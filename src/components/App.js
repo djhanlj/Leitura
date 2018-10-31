@@ -5,18 +5,54 @@ import Home from './Home';
 import Categories from './Categories';
 import Navbar from './CustomNavBar';
 
+import { receiveCategories, fetchCategories} from '../actions'
+import { connect } from 'react-redux'
+
+import keyIndex from 'react-key-index';
+import * as API from '../utils/LeituraAPI'
+
 class App extends Component {
+
+  state = {
+    categories: []
+  }
+
+  componentDidMount(){
+    API.getCategories().then((categories) => {
+      this.setState({categories})
+    })
+  }
+
+
   render() {
     return (
       <Router>
         <div>
-          <Navbar />
           <Route exact path="/" component={Home} />
-          <Route path="/categories" component={Categories} />
-        </div>
+          {  this.state.categories.map((categoria, index) => (
+            <Route key={index}  path={ categoria.path} component={categoria.name } /> 
+            ))}
+           
+          </div>
       </Router>
     );
   }
 }
 
-export default App;
+
+function mapStateToProps({categories}){
+  return {
+    categories,
+  }
+}
+
+/*function mapDispatchToProps(dispatch) {
+	return {
+		requestCategories: () => dispatch(fetchCategories())
+	}
+}*/
+
+
+
+export default connect(mapStateToProps)(App);
+//export default App;
