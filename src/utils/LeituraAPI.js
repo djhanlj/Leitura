@@ -6,9 +6,21 @@ const headers = {
   'Authorization': 'whatever-you-want'
 }
 
-
+/**
+ * fetch Categorias from api
+ */
 export const getCategories = () =>
-  fetch(`${api}/categories`, { headers })
+  fetch(`${api}/categories`, { headers }).then(response => {
+    return response.json();
+  }).catch(error => {
+    return error;
+  });
+
+/**
+ * fetch Posts from api
+ */
+export const getPosts = () =>
+  fetch(`${api}/posts`, { headers })
     .then(res => res.json())
-    .then(data => data.categories)
+    .then(data => data.posts)
 
