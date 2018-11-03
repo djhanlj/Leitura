@@ -5,7 +5,6 @@ export const  RECEIVE_POSTS = "RECEIVE_POSTS"
 
 
 export function receiveCategories (categories){
-    console.log(categories)
     return {
         type: RECEIVE_CATEGORIES,
         categories,
@@ -18,8 +17,6 @@ export function receivePosts (){
         type: RECEIVE_POSTS,
     }
 }
-
-
 
 export function fetchCategories() {
 	return  (dispatch) => {

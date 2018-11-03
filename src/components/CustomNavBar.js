@@ -19,7 +19,7 @@ class CustomNavBar extends Component {
         Home
       </NavItem>
       {categories.map( (categoria, index) => (
-         <NavItem ley={index} componentClass={Link} href={categoria.path} to={categoria.path}>
+         <NavItem key={index} componentClass={Link} href={categoria.path} to={categoria.path}>
          { categoria.name }
        </NavItem>
       ))}
