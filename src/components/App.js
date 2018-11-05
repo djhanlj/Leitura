@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import '../App.css';
 import { fetchCategories} from '../actions'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
+import '../css/clean-blog.css';
+import '../App.css';
+
 
 
 class App extends Component {

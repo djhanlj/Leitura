@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
-import '../App.css';
-import {Navbar, Nav,NavItem} from 'react-bootstrap';
+import {Navbar, Nav,NavItem } from 'react-bootstrap';
 
 class CustomNavBar extends Component {
   render() {
     const { categories } = this.props
-   
     return (
-    <Navbar>
+    <Navbar fixedTop>
     <Navbar.Header>
       <Navbar.Brand>
         Leitura

@@ -1,35 +1,69 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Jumbotron, Grid, Row, Col, Image, Button } from 'react-bootstrap';
 
 
 export default class Home extends Component {
   render() {
     return (
-      <Grid>
-        <Jumbotron>
-          <h2>Posts</h2>
-          <p>This is how to build a website with React, React-Router & React-Bootstrap</p>
-          <Link to="/about">
-            <Button bsStyle="primary">Learn More</Button>
-          </Link>
-        </Jumbotron>
-        <Row className="show-grid text-center">
-          <Col xs={12} sm={4} className="person-wrapper">
-            <Image src="assets/person-1.jpg" circle className="profile-pic"/>
-            <h3>Frank</h3>
-            <p>That's a crooked tree. We'll send him to Washington. These little son of a guns hide in your brush and you just have to push them out.</p>
-          </Col>
-          <Col xs={12} sm={4} className="person-wrapper">
-            <Image src="assets/person-2.jpg" circle className="profile-pic"/>
-            <h3>Vanessa</h3>
-            <p>That's a crooked tree. We'll send him to Washington. These little son of a guns hide in your brush and you just have to push them out.</p>
-          </Col>
-          <Col xs={12} sm={4} className="person-wrapper">
-            <Image src="assets/person-3.jpg" circle className="profile-pic"/>
-            <h3>Riff</h3>
-            <p>That's a crooked tree. We'll send him to Washington. These little son of a guns hide in your brush and you just have to push them out.</p>
-          </Col>
+      <Grid className="body">
+        <Row className="show-grid">
+          <div className="col-lg-8 col-md-10">
+                { /** Title */ }
+                <h1>Blog Post </h1>
+
+                  <div class="post-preview">
+                      <a href="post.html">
+                          <h2 class="post-title">
+                              Man must explore, and this is exploration at its greatest
+                          </h2>
+                          <h3 class="post-subtitle">
+                              Problems look mighty small from 150 miles up
+                          </h3>
+                      </a>
+                      <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+                  </div>
+                  <hr/>
+                  <div class="post-preview">
+                      <a href="post.html">
+                          <h2 class="post-title">
+                              I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+                          </h2>
+                      </a>
+                      <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
+                  </div>
+                  <hr/>
+                  <div class="post-preview">
+                      <a href="post.html">
+                          <h2 class="post-title">
+                              Science has not yet mastered prophecy
+                          </h2>
+                          <h3 class="post-subtitle">
+                              We predict too much for the next year and yet far too little for the next ten.
+                          </h3>
+                      </a>
+                      <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
+                  </div>
+                  <hr/>
+                  <div class="post-preview">
+                      <a href="post.html">
+                          <h2 class="post-title">
+                              Failure is not an option
+                          </h2>
+                          <h3 class="post-subtitle">
+                              Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                          </h3>
+                      </a>
+                      <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
+                  </div>
+                  <hr/>
+                
+                  <ul class="pager">
+                      <li class="next">
+                          <a href="#">Older Posts &rarr;</a>
+                      </li>
+                  </ul>
+            </div>
         </Row>
       </Grid>
     )

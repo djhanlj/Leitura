@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../App.css';
 import Home from './Home';
+import Posts from './Posts';
+
 import Navbar from './CustomNavBar';
 import { connect } from 'react-redux'
 
@@ -21,9 +23,7 @@ class Dashboard extends Component {
          <Fragment>
           <Navbar categories = { this.verificaCategories ? this.props.categories : null } />
           <Route exact path="/" component={Home} />
-            { this.verificaCategories ? this.props.categories.map((categoria, index) => (
-                <Route  key={categoria.name} path={ categoria.path} component={ Home } />
-                )) : null }
+          <Route path="/:category" component={ Posts } />
           </Fragment>
       </Router>
     );
