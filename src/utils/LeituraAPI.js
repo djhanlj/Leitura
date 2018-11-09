@@ -6,6 +6,17 @@ const headers = {
   'Authorization': 'whatever-you-want'
 }
 
+export function getInitialData () {
+  return Promise.all([
+    getCategories(),
+    getPosts(),
+  ]).then(([categories, posts]) => ({
+    categories,
+    posts,
+  }))
+}
+
+
 /**
  * fetch Categorias from api
  */
@@ -20,5 +31,5 @@ export const getCategories = () =>
 export const getPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
-    .then(data => data.posts)
+    .then(data => data)
 
