@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap';
+import { connect } from 'react-redux'
 
-export default class Posts extends Component {
+class Posts extends Component {
   render() {
     console.log(this.props.match.params.category)
     const { category } = this.props.match.params
@@ -74,3 +75,11 @@ export default class Posts extends Component {
     )
   }
 }
+
+function mapStateToProps({posts}){
+    return {
+      posts
+    }
+  }
+
+  export default connect(mapStateToProps)(Posts);
