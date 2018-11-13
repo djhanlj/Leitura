@@ -3,10 +3,7 @@ import { handleInitialData } from '../actions'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
 
-
-
 class App extends Component {
-
   componentDidMount(){
     this.props.dispatch(handleInitialData())
   }
@@ -20,4 +17,3 @@ class App extends Component {
   }
 }
 export default connect()(App);
-//export default App;

@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import '../App.css';
+import { connect } from 'react-redux'
 import Home from './Home';
 import Posts from './Posts';
-
 import Navbar from './CustomNavBar';
-import { connect } from 'react-redux'
 
 
 class Dashboard extends Component {
@@ -30,14 +28,10 @@ class Dashboard extends Component {
   }
 }
 
-
 function mapStateToProps({categories}){
   return {
     categories
   }
 }
 
-
-
 export default connect(mapStateToProps)(Dashboard);
-//export default App;

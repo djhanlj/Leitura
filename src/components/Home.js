@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link, Redirect } from 'react-router-dom';
-import { Jumbotron, Grid, Row, Col, Image, Button, Glyphicon, Badge } from 'react-bootstrap';
+import { Grid, Row, Col, Image, Button, Glyphicon, Badge } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { formatDate } from '../utils/helpers'
 
@@ -24,7 +24,9 @@ class Home extends Component {
                                 { post.body }   
                           </h3>
                       </a>
-                      <p className="post-meta">Posted by <a href="#">{ post.author }</a> on {formatDate(post.timestamp)} </p>
+                      <p className="post-meta">Posted by 
+                        <a href="#">{ post.author }</a> on {formatDate(post.timestamp)} 
+                      </p>
                       <Row className="show-grid">
                         <Col md={2}>
                           <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>

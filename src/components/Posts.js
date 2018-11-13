@@ -4,13 +4,12 @@ import { connect } from 'react-redux'
 
 class Posts extends Component {
   render() {
-    console.log(this.props.match.params.category)
     const { category } = this.props.match.params
     return (
       <Grid className="body">
         <Row className="show-grid">
         <Col md={8}>
-            <h1>Blog Post Title { category }</h1>
+            <h1>Blog Post  { category }</h1>
             <p className="lead">
                 by <a href="#">Start Bootstrap</a>
             </p>
@@ -80,6 +79,6 @@ function mapStateToProps({posts}){
     return {
       posts
     }
-  }
+}
 
-  export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps)(Posts);
