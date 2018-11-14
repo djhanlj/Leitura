@@ -39,18 +39,9 @@ export function handleToggleVoting ({id, voto}) {
             method: 'POST',
             headers,
             body: JSON.stringify({ option: voto})
-          })
-          .then(res => res.json())
-          .then(data => data)
+        })
+        .then(res => res.json())
+        .then(data => data)
     
 }
     
-
-/*export const handleToggleVoting = ({id, option}) => 
-  fetch(`${api}/posts/${id}`, { 
-    headers,
-    method: 'post',
-    body: JSON.stringify(option)
-  })
-  .then(res => res.json())
-  .then(data => data)*/

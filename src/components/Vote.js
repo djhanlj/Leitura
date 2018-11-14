@@ -11,7 +11,7 @@ class Vote extends Component {
         dispatch(handleToggleVote({
             id: post.id,
             voto: typeVote,
-            voteScore: post.voteScore + 1
+            voteScore: (typeVote  == 'upVote') ? post.voteScore + 1 : post.voteScore - 1 
         }))
     }
 
