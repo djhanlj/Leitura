@@ -2,7 +2,7 @@
 const api = "http://localhost:3001"
 
 const headers = {
-  'Accept': 'application/json',
+  'Content-Type': 'application/json',
   'Authorization': 'whatever-you-want'
 }
 
@@ -33,3 +33,24 @@ export const getPosts = () =>
     .then(res => res.json())
     .then(data => data)
 
+
+export function handleToggleVoting ({id, voto}) {
+    return fetch(`${api}/posts/${id}`, { 
+            method: 'POST',
+            headers,
+            body: JSON.stringify({ option: voto})
+          })
+          .then(res => res.json())
+          .then(data => data)
+    
+}
+    
+
+/*export const handleToggleVoting = ({id, option}) => 
+  fetch(`${api}/posts/${id}`, { 
+    headers,
+    method: 'post',
+    body: JSON.stringify(option)
+  })
+  .then(res => res.json())
+  .then(data => data)*/
