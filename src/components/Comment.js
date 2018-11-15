@@ -1,29 +1,46 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { Col } from 'react-bootstrap';
+import { handleComments } from '../actions/comment'
+import { formatDate } from '../utils/helpers'
 
 class Comment extends Component {
 
-    /*componentDidMount(){
-        this.props.dispatch(handleInitialData())
-      }*/
-    
-
+    componentDidMount() {
+        const { dispatch, post_id } = this.props
+        dispatch(handleComments(post_id))
+    }
     render() {
+        const { comments } = this.props
         return (
             <Col md={12}>
-                <div className="media">
-                        <div className="media-body">
-                            <h4 className="media-heading">Start Bootstrap
-                                <small>August 25, 2014 at 9:30 PM</small>
-                            </h4>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. 
-                            Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                             Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        
+                <h4>Comentários ({comments.length}) </h4>
+                <br/>
+                {comments.map((comment) => (
+                    <Fragment key={comment.id}>
+                        <div className="media" key={comment.id}>
+                            <div className="media-body">
+                                <h4 className="media-heading">
+                                    {comment.author}
+                                    <small> {formatDate(comment.timestamp)} </small>
+                                </h4>
+                                {comment.body}
+                            </div>
                         </div>
-                    </div>
+                        <hr />
+                    </Fragment>
+                ))}
             </Col>
         )
     }
 }
-export default Comment;
+
+function mapStateToProps({ comments }, { post_id }) {
+    return {
+        comments,
+        post_id,
+    }
+}
+
+export default connect(mapStateToProps)(Comment);
+

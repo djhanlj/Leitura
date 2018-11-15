@@ -34,6 +34,17 @@ export const getPosts = () =>
     .then(data => data)
 
 
+/**
+ * @param  {} post_id
+ * @returns {{type: comments}}
+ */
+export const getComments = (post_id) =>
+  fetch(`${api}/posts/${post_id}/comments`, { headers })
+    .then(res => res.json())
+    .then(data => data)
+
+
+
 export function handleToggleVoting ({id, voto}) {
     return fetch(`${api}/posts/${id}`, { 
             method: 'POST',

@@ -30,6 +30,17 @@ class PostDetail extends Component {
                             <hr />
                             <p className="lead">{post.body}</p>
                             <hr />
+                            <div className="well">
+                                <h4>Leave a Comment:</h4>
+                                <form role="form">
+                                    <div className="form-group">
+                                        <textarea className="form-control" rows="3"></textarea>
+                                    </div>
+                                    <button type="submit" className="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+
+                            <hr/>
                             { /** Comment */}
                             <Comment post_id={post_id} />
                         </Col>

@@ -18,12 +18,12 @@ export function toggleVote({id, voteScore}){
         voteScore
     }
 }
-export function handleToggleVote(info){
+export function handleToggleVote(post){
     return (dispatch) => {
-        dispatch(toggleVote(info))
-        return API.handleToggleVoting(info)
+        dispatch(toggleVote(post))
+        return API.handleToggleVoting(post)
           .catch((e) => {
-            dispatch(toggleVote(info))
+            dispatch(toggleVote(post))
           })
       }
 }
