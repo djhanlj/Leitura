@@ -34,7 +34,7 @@ class Posts extends Component {
                     <Col md={2}>
                       <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
                     </Col>
-                    <Vote dispatch={dispatch} post={post} />
+                    <Vote dispatch={dispatch} objeto={post} typeObject={'post'} />
                   </Row>
                 </div>
                 <hr />

@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
+import { Grid, Row, Col, Badge } from 'react-bootstrap';
+
 import Comment from './Comment'
+import Vote from './Vote'
 
 class PostDetail extends Component {
 
     render() {
-        const { post, category, post_id } = this.props
+        const { post, category, post_id, dispatch } = this.props
         console.log(post)
 
         return (
@@ -29,6 +31,13 @@ class PostDetail extends Component {
                             </p>
                             <hr />
                             <p className="lead">{post.body}</p>
+
+                            <Row className="show-grid">
+                                <Col md={2}>
+                                    <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
+                                </Col>
+                                <Vote dispatch={dispatch} objeto={post} typeObject={'post'} />
+                            </Row>
                             <hr />
                             <div className="well">
                                 <h4>Leave a Comment:</h4>
@@ -40,7 +49,7 @@ class PostDetail extends Component {
                                 </form>
                             </div>
 
-                            <hr/>
+                            <hr />
                             { /** Comment */}
                             <Comment post_id={post_id} />
                         </Col>

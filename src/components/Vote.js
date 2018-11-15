@@ -1,28 +1,38 @@
 import React, { Component } from 'react'
 import { Col, Button, Glyphicon } from 'react-bootstrap';
-import { handleToggleVote } from '../actions/post'
+import { handleToggleVotePost } from '../actions/post'
+import { handleToggleVoteComment } from '../actions/comment'
 
 class Vote extends Component {
 
-    handleVote= (e, post, typeVote) => {
+    handleVote= (e, objeto, typeObject, typeVote) => {
         e.preventDefault()
         const { dispatch } = this.props
 
-        dispatch(handleToggleVote({
-            id: post.id,
-            voto: typeVote,
-            voteScore: (typeVote  === 'upVote') ? post.voteScore + 1 : post.voteScore - 1 
-        }))
+        if(typeObject === 'post'){ 
+            dispatch(handleToggleVotePost({
+                id: objeto.id,
+                voto: typeVote,
+                voteScore: (typeVote  === 'upVote') ? objeto.voteScore + 1 : objeto.voteScore - 1 
+            })) 
+        } else{
+            dispatch(handleToggleVoteComment({
+                id: objeto.id,
+                voto: typeVote,
+                voteScore: (typeVote  === 'upVote') ? objeto.voteScore + 1 : objeto.voteScore - 1 
+            })) 
+        }
+
     }
 
     render() {
-        const { post } = this.props
+        const { objeto, typeObject } = this.props
         return (
             <Col md={5}>
-                <Button bsSize="small" onClick={(e) => this.handleVote(e, post, 'upVote')}>
+                <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto, typeObject, 'upVote')}>
                     <Glyphicon glyph="thumbs-up" /> Star
                 </Button>
-                <Button bsSize="small" onClick={(e) => this.handleVote(e, post, 'downVote')}>
+                <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto,  typeObject, 'downVote')}>
                     <Glyphicon glyph="thumbs-down" /> Star
                 </Button>
             </Col>

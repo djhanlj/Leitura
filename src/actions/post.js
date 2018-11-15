@@ -1,7 +1,7 @@
 import * as API from '../utils/LeituraAPI'
 
 export const  RECEIVE_POSTS = "RECEIVE_POSTS"
-export const  TOGGLE_VOTE = "TOGGLE_VOTE"
+export const  UPDATE_POST = "UPDATE_POST"
 
 export function receivePosts (posts){
     return {
@@ -10,20 +10,19 @@ export function receivePosts (posts){
     }
 }
 
-
-export function toggleVote({id, voteScore}){
+export function toggleVotePost({id, voteScore}){
     return {
-        type: TOGGLE_VOTE,
+        type: UPDATE_POST,
         id,
         voteScore
     }
 }
-export function handleToggleVote(post){
+export function handleToggleVotePost(post){
     return (dispatch) => {
-        dispatch(toggleVote(post))
-        return API.handleToggleVoting(post)
+        dispatch(toggleVotePost(post))
+        return API.handleToggleVotingPost(post)
           .catch((e) => {
-            dispatch(toggleVote(post))
+            dispatch(toggleVotePost(post))
           })
       }
 }

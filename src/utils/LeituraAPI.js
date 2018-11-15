@@ -44,8 +44,7 @@ export const getComments = (post_id) =>
     .then(data => data)
 
 
-
-export function handleToggleVoting ({id, voto}) {
+export function handleToggleVotingPost({id, voto}) {
     return fetch(`${api}/posts/${id}`, { 
             method: 'POST',
             headers,
@@ -54,6 +53,17 @@ export function handleToggleVoting ({id, voto}) {
         .then(res => res.json())
         .then(data => data)
     
+}
+
+export function handleToggleVotingComment({id, voto}) {
+  return fetch(`${api}/comments/${id}`, { 
+          method: 'POST',
+          headers,
+          body: JSON.stringify({ option: voto})
+      })
+      .then(res => res.json())
+      .then(data => data)
+  
 }
     
 export const getCategoryPosts = (cateogry) =>

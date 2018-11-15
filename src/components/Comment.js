@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Col } from 'react-bootstrap';
+import { Row, Col, Badge } from 'react-bootstrap';
 import { handleComments } from '../actions/comment'
 import { formatDate } from '../utils/helpers'
+import Vote from './Vote'
 
 class Comment extends Component {
 
@@ -11,11 +12,11 @@ class Comment extends Component {
         dispatch(handleComments(post_id))
     }
     render() {
-        const { comments } = this.props
+        const { comments, dispatch } = this.props
         return (
             <Col md={12}>
                 <h4>Comentários ({comments.length}) </h4>
-                <br/>
+                <br />
                 {comments.map((comment) => (
                     <Fragment key={comment.id}>
                         <div className="media" key={comment.id}>
@@ -25,6 +26,13 @@ class Comment extends Component {
                                     <small> {formatDate(comment.timestamp)} </small>
                                 </h4>
                                 {comment.body}
+                                <Row className="show-grid">
+                                    <Col md={2}>
+                                        <p className="post-meta">Votos <Badge>{comment.voteScore}</Badge></p>
+                                    </Col>
+                                    <Vote dispatch={dispatch} objeto={comment} typeObject={'comment'} />
+                                </Row>
+
                             </div>
                         </div>
                         <hr />
