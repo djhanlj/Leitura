@@ -13,11 +13,11 @@ class CustomNavBar extends Component {
       </Navbar.Brand>
     </Navbar.Header>
     <Nav>
-      <NavItem eventKey={1} componentClass={Link} href="/" to="/">
+      <NavItem eventKey={1} componentClass={Link}  href="/" to="/">
         Home
       </NavItem>
       {categories.map( (categoria, index) => (
-         <NavItem key={index} componentClass={Link} href={categoria.path} to={categoria.path}>
+         <NavItem key={index} componentClass={Link} href={`/${categoria.path}`} to={`/${categoria.path}`}>
          { categoria.name }
        </NavItem>
       ))}

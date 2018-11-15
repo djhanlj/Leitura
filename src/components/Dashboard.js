@@ -16,9 +16,14 @@ class Dashboard extends Component {
     return (
       <Router>
          <Fragment>
-          <Navbar categories = { this.verificaCategories ? this.props.categories : null } />
-          <Route exact path="/:category?" component={Home} />
-          <Route path={`/:category/:post_id` } component={ PostDetail } />
+          {this.verificaCategories 
+              ? <div>
+              <Navbar categories = { this.props.categories } />
+              <Route exact path="/:category?" component={Home} />
+              <Route path={`/:category/:post_id` } component={ PostDetail } />
+              </div>
+              : null }
+
           </Fragment>
       </Router>
     );
