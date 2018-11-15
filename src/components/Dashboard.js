@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Home from './Home';
 import Navbar from './CustomNavBar';
 import PostDetail from './PostDetail';
+import NewPost from './NewPost';
 
 class Dashboard extends Component {
    verificaCategories(){
@@ -21,6 +22,7 @@ class Dashboard extends Component {
               <Navbar categories = { this.props.categories } />
               <Route exact path="/:category?" component={Home} />
               <Route path={`/:category/:post_id` } component={ PostDetail } />
+              <Route path={`/post/create` } component={ NewPost } />
               </div>
               : null }
 

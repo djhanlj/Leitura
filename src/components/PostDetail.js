@@ -15,46 +15,46 @@ class PostDetail extends Component {
 
         return (
             <Grid className="body">
-                <Row className="show-grid">
-                    {this.props.post ?
-                        <Col md={8}>
-                            <h1>{post.title}</h1>
-                            <p className="lead">
-                                <Link to={`/${category}`} >
-                                    <a>{category}</a>
-                                </Link>
-                            </p>
-                            <hr />
-                            <p>
-                                <span className="glyphicon glyphicon-time"></span>
-                                <a> {post.author}</a> on {formatDate(post.timestamp)}
-                            </p>
-                            <hr />
-                            <p className="lead">{post.body}</p>
+            <Row className="show-grid">
+                {this.props.post ?
+                    <Col md={8}>
+                        <h1>{post.title}</h1>
+                        <p className="lead">
+                            <Link to={`/${category}`} >
+                                <a>{category}</a>
+                            </Link>
+                        </p>
+                        <hr />
+                        <p>
+                            <span className="glyphicon glyphicon-time"></span>
+                            <a> {post.author}</a> on {formatDate(post.timestamp)}
+                        </p>
+                        <hr />
+                        <p className="lead">{post.body}</p>
 
-                            <Row className="show-grid">
-                                <Col md={2}>
-                                    <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
-                                </Col>
-                                <Vote dispatch={dispatch} objeto={post} typeObject={'post'} />
-                            </Row>
-                            <hr />
-                            <div className="well">
-                                <h4>Leave a Comment:</h4>
-                                <form role="form">
-                                    <div className="form-group">
-                                        <textarea className="form-control" rows="3"></textarea>
-                                    </div>
-                                    <button type="submit" className="btn btn-primary">Submit</button>
-                                </form>
-                            </div>
+                        <Row className="show-grid">
+                            <Col md={2}>
+                                <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
+                            </Col>
+                            <Vote dispatch={dispatch} objeto={post} typeObject={'post'} />
+                        </Row>
+                        <hr />
+                        <div className="well">
+                            <h4>Leave a Comment:</h4>
+                            <form role="form">
+                                <div className="form-group">
+                                    <textarea className="form-control" rows="3"></textarea>
+                                </div>
+                                <button type="submit" className="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
 
-                            <hr />
-                            { /** Comment */}
-                            <Comment post_id={post_id} />
-                        </Col>
-                        : null}
-                </Row>
+                        <hr />
+                        { /** Comment */}
+                        <Comment post_id={post_id} />
+                    </Col>
+                    : null}
+            </Row>
             </Grid>
         )
     }
