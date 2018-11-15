@@ -46,7 +46,7 @@ export function handleToggleVoting ({id, voto}) {
 }
     
 export const getCategoryPosts = (cateogry) =>
-  fetch(`${api}/${cateogry}posts`, { headers })
+  fetch(`${api}/${cateogry}/posts`, { headers })
     .then(res => res.json())
     .then(data => data)
 

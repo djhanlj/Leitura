@@ -3,6 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux'
 
 class Posts extends Component {
+    
   render() {
     const { category } = this.props.match.params
     const { posts } = this.props

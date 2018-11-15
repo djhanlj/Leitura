@@ -5,9 +5,7 @@ import Home from './Home';
 import Category from './Category';
 import Navbar from './CustomNavBar';
 
-
 class Dashboard extends Component {
-
    verificaCategories(){
     return (this.props && this.props.categories.length > 0)
      ? true
@@ -15,7 +13,6 @@ class Dashboard extends Component {
    } 
  
   render() {
-
     return (
       <Router>
          <Fragment>
