@@ -5,9 +5,11 @@ import Posts from './Posts'
 class Home extends Component {
 
   render() {
+    const { category } = this.props.match.params
+
     return (
       <Grid className="body">
-        <Posts/>
+        <Posts category={category} />
       </Grid>
     )
   }

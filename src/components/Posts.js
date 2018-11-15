@@ -3,6 +3,7 @@ import { Grid, Row, Col, Badge } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import Vote from './Vote'
 import { formatDate } from '../utils/helpers'
+import { Link, withRouter } from 'react-router-dom'
 
 class Posts extends Component {
 
@@ -21,7 +22,9 @@ class Posts extends Component {
                 <div className="post-preview">
                   <a href="post.html">
                     <h2 className="post-title">
+                    <Link to={`/${post.category}/${post.id}`} >
                       {post.title}
+                    </Link>  
                     </h2>
                   </a>
                   <p className="post-meta">Posted by
@@ -51,4 +54,4 @@ function mapStateToProps({ posts }, { category }) {
   }
 }
 
-export default connect(mapStateToProps)(Posts);
+export default withRouter(connect(mapStateToProps)(Posts));

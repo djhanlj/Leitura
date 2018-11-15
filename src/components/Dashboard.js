@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Home from './Home';
-import Category from './Category';
 import Navbar from './CustomNavBar';
+import PostDetail from './PostDetail';
 
 class Dashboard extends Component {
    verificaCategories(){
@@ -17,8 +17,8 @@ class Dashboard extends Component {
       <Router>
          <Fragment>
           <Navbar categories = { this.verificaCategories ? this.props.categories : null } />
-          <Route exact path="/" component={Home} />
-          <Route path="/:category" component={ Category } />
+          <Route exact path="/:category?" component={Home} />
+          <Route path={`/:category/:post_id` } component={ PostDetail } />
           </Fragment>
       </Router>
     );

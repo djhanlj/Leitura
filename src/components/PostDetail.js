@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux'
 
-class Posts extends Component {
+
+class PostDetail extends Component {
     
   render() {
     const { category } = this.props.match.params
@@ -14,7 +15,7 @@ class Posts extends Component {
         <Col md={8}>
             <h1>Blog Post  { category }</h1>
             <p className="lead">
-                by <a href="#">Start Bootstrap</a>
+                by <a>Start Bootstrap</a>
             </p>
             <hr/>
             <p><span className="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
@@ -84,4 +85,4 @@ function mapStateToProps({posts}){
     }
 }
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps)(PostDetail);
