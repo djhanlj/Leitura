@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, HelpBlock } from 'react-bootstrap';
 import { handleAddPost } from '../actions/post'
 
@@ -18,13 +18,12 @@ class NewPost extends Component {
         this.setState({ [propertyName]: event.target.value });
     }
 
-
     handleSubmit = (e) => {
         e.preventDefault()
         const { category, author, body, title } = this.state
         const { dispatch } = this.props
         dispatch(handleAddPost(category, author, body, title))
-        console.log(this.state)
+        this.props.history.push(`/${category}`)
     }
 
 

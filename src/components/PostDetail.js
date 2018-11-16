@@ -12,8 +12,6 @@ class PostDetail extends Component {
 
     render() {
         const { post, category, post_id, dispatch } = this.props
-        console.log(post)
-
         return (
             <Grid className="body">
                 <Row className="show-grid">
@@ -22,13 +20,13 @@ class PostDetail extends Component {
                             <h1>{post.title}</h1>
                             <p className="lead">
                                 <Link to={`/${category}`} >
-                                    <a>{category}</a>
+                                    {category}
                                 </Link>
                             </p>
                             <hr />
                             <p>
                                 <span className="glyphicon glyphicon-time"></span>
-                                <a> {post.author}</a> on {formatDate(post.timestamp)}
+                                {post.author} on {formatDate(post.timestamp)}
                             </p>
                             <hr />
                             <p className="lead">{post.body}</p>

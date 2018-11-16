@@ -1,10 +1,6 @@
-import { RECEIVE_POSTS, UPDATE_POST, ADD_POST } from '../actions/post'
+import { RECEIVE_POSTS, UPDATE_POST, ADD_POST, ADD_COMMENT_POST } from '../actions/post'
 
 export default function posts(state = [], action) {
-
-    console.log("action: " + action.posts)
-
-
     switch (action.type) {
         case RECEIVE_POSTS:
             return action.posts
@@ -14,6 +10,9 @@ export default function posts(state = [], action) {
 
         case ADD_POST:
             return state.concat(action.posts)
+
+        case ADD_COMMENT_POST:
+            return state.map(post => post.id === action.post_id ? { ...post, commentCount: post.commentCount + 1 } : post)
 
         default:
             return state

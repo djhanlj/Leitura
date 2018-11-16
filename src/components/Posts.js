@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Grid, Row, Col, Badge } from 'react-bootstrap';
+import { Row, Col, Badge, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import Vote from './Vote'
 import { formatDate } from '../utils/helpers'
@@ -14,29 +14,32 @@ class Posts extends Component {
 
     return (
       <Fragment>
-          {arrayPosts.map((post, index) => (
-            <Fragment key={index}>
-              <div className="post-preview">
-                <a href="post.html">
-                  <h2 className="post-title">
-                    <Link to={`/${post.category}/${post.id}`} >
-                      {post.title}
-                    </Link>
-                  </h2>
-                </a>
-                <p className="post-meta">Posted by
-                       <a> { post.author }</a> on {formatDate(post.timestamp)}
-                </p>
-                <Row className="show-grid">
-                  <Col md={2}>
-                    <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
-                  </Col>
-                  <Vote dispatch={dispatch} objeto={post} typeObject={'post'} />
-                </Row>
-              </div>
-              <hr />
-            </Fragment>
-          ))}
+        {arrayPosts.map((post, index) => (
+          <Fragment key={index}>
+            <div className="post-preview">
+              <h2 className="post-title">
+                <Link to={`/${post.category}/${post.id}`} >
+                  {post.title}
+                </Link>
+              </h2>
+              <p className="post-meta">Posted by
+                   {post.author} on {formatDate(post.timestamp)}
+              </p>
+              <Row className="show-grid">
+                <Col md={1}>
+                  <p className="post-meta">
+                    <Glyphicon glyph="comment" /> {post.commentCount}
+                  </p>
+                </Col>
+                <Col md={2}>
+                  <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
+                </Col>
+                <Vote dispatch={dispatch} objeto={post} typeObject={'post'} />
+              </Row>
+            </div>
+            <hr />
+          </Fragment>
+        ))}
       </Fragment>
     )
   }
