@@ -1,3 +1,4 @@
+import { formatPost } from '../utils/helpers'
 
 const api = "http://localhost:3001"
 
@@ -6,7 +7,9 @@ const headers = {
   'Authorization': 'whatever-you-want'
 }
 
-export function getInitialData () {
+
+
+export function getInitialData() {
   return Promise.all([
     getCategories(),
     getPosts(),
@@ -22,8 +25,8 @@ export function getInitialData () {
  */
 export const getCategories = () =>
   fetch(`${api}/categories`, { headers })
-  .then(res => res.json())
-  .then(data => data.categories)
+    .then(res => res.json())
+    .then(data => data.categories)
 
 /**
  * fetch Posts from api
@@ -44,30 +47,40 @@ export const getComments = (post_id) =>
     .then(data => data)
 
 
-export function handleToggleVotingPost({id, voto}) {
-    return fetch(`${api}/posts/${id}`, { 
-            method: 'POST',
-            headers,
-            body: JSON.stringify({ option: voto})
-        })
-        .then(res => res.json())
-        .then(data => data)
-    
-}
-
-export function handleToggleVotingComment({id, voto}) {
-  return fetch(`${api}/comments/${id}`, { 
-          method: 'POST',
-          headers,
-          body: JSON.stringify({ option: voto})
-      })
-      .then(res => res.json())
-      .then(data => data)
-  
-}
-    
 export const getCategoryPosts = (cateogry) =>
   fetch(`${api}/${cateogry}/posts`, { headers })
     .then(res => res.json())
     .then(data => data)
+
+
+export function savePost(category, author, body, title) {
+  return fetch(`${api}/posts`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(formatPost(category, author, body, title))
+  }).then(res => res.json())
+    .then(data => data)
+}
+
+export function handleToggleVotingPost({ id, voto }) {
+  return fetch(`${api}/posts/${id}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({ option: voto })
+  })
+    .then(res => res.json())
+    .then(data => data)
+
+}
+
+export function handleToggleVotingComment({ id, voto }) {
+  return fetch(`${api}/comments/${id}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({ option: voto })
+  })
+    .then(res => res.json())
+    .then(data => data)
+
+}
 

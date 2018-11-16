@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Button, Glyphicon } from 'react-bootstrap';
+import { Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap';
 import { handleToggleVotePost } from '../actions/post'
 import { handleToggleVoteComment } from '../actions/comment'
 
@@ -29,12 +29,14 @@ class Vote extends Component {
         const { objeto, typeObject } = this.props
         return (
             <Col md={5}>
+            <ButtonToolbar>
                 <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto, typeObject, 'upVote')}>
-                    <Glyphicon glyph="thumbs-up" /> Star
+                    <Glyphicon glyph="thumbs-up" />
                 </Button>
                 <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto,  typeObject, 'downVote')}>
-                    <Glyphicon glyph="thumbs-down" /> Star
+                    <Glyphicon glyph="thumbs-down" />
                 </Button>
+                </ButtonToolbar>
             </Col>
         )
     }

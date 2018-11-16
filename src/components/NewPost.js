@@ -2,17 +2,34 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, HelpBlock } from 'react-bootstrap';
+import { handleAddPost } from '../actions/post'
+
 
 class NewPost extends Component {
 
     state = {
-        text: '',
-        toHome: false,
+        title: '',
+        body: '',
+        author: '',
+        category: '',
+    }
+
+    handleChangeFor = (propertyName) => (event) => {
+        this.setState({ [propertyName]: event.target.value });
+    }
+
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const { category, author, body, title } = this.state
+        const { dispatch } = this.props
+        dispatch(handleAddPost(category, author, body, title))
+        console.log(this.state)
     }
 
 
     render() {
-        const { text, toHome } = this.state
+        const { category, author, body, title } = this.state
         const { categories } = this.props
 
         return (
@@ -24,10 +41,10 @@ class NewPost extends Component {
                 </Row>
                 <Row className="show-grid">
                     <Col lg={8} md={10}>
-                        <form >
+                        <form onSubmit={this.handleSubmit}>
                             <FormGroup controlId="formControlsSelect">
-                                <ControlLabel>Select</ControlLabel>
-                                <FormControl componentClass="select" placeholder="select">
+                                <ControlLabel>Categorias</ControlLabel>
+                                <FormControl componentClass="select" placeholder="select" value={category} onChange={this.handleChangeFor('category')} >
                                     {categories.map((categorie, index) => (
                                         <option key={index} value={categorie.name}>{categorie.name}</option>
                                     ))}
@@ -36,6 +53,8 @@ class NewPost extends Component {
 
                             <FieldGroup
                                 id="formControlsText"
+                                value={author}
+                                onChange={this.handleChangeFor('author')}
                                 type="text"
                                 label="Autor"
                                 placeholder="Enter text"
@@ -43,6 +62,8 @@ class NewPost extends Component {
 
                             <FieldGroup
                                 id="formControlsText"
+                                value={title}
+                                onChange={this.handleChangeFor('title')}
                                 type="text"
                                 label="Titulo"
                                 placeholder="Enter text"
@@ -50,7 +71,11 @@ class NewPost extends Component {
 
                             <FormGroup controlId="formControlsTextarea">
                                 <ControlLabel>Digita Post</ControlLabel>
-                                <FormControl componentClass="textarea" placeholder="textarea" />
+                                <FormControl
+                                    value={body}
+                                    onChange={this.handleChangeFor('body')}
+                                    componentClass="textarea"
+                                    placeholder="textarea" />
                             </FormGroup>
 
                             <Button type="submit">Submit</Button>

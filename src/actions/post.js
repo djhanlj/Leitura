@@ -2,6 +2,15 @@ import * as API from '../utils/LeituraAPI'
 
 export const  RECEIVE_POSTS = "RECEIVE_POSTS"
 export const  UPDATE_POST = "UPDATE_POST"
+export const  ADD_POST = "ADD_POST"
+
+
+function addPost (posts) {
+    return {
+      type: ADD_POST,
+      posts,
+    }
+  }
 
 export function receivePosts (posts){
     return {
@@ -26,3 +35,13 @@ export function handleToggleVotePost(post){
           })
       }
 }
+
+
+export function handleAddPost (category, author, body, title) {
+    return (dispatch) => {
+      return API.savePost({
+        category, author, body, title
+      })
+        .then((posts) => dispatch(addPost(posts)))
+    }
+  }
