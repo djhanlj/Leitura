@@ -13,7 +13,7 @@ export default function posts(state = [], action) {
             return state.map(post => post.id === action.id ? { ...post, voteScore: action.voteScore } : post)
 
         case ADD_POST:
-        return state.concat(action.posts)
+            return state.concat(action.posts)
 
         default:
             return state
