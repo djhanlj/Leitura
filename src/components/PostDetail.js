@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
-import { Grid, Row, Col, Badge } from 'react-bootstrap';
+import { Grid, Row, Col, Badge, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
 
 import Comment from './Comment'
 import Vote from './Vote'
@@ -11,38 +11,63 @@ import NewComment from './NewComment'
 class PostDetail extends Component {
 
     render() {
-        const { post, category, post_id, dispatch } = this.props
+        const { post, post_id, dispatch } = this.props
         return (
             <Grid className="body">
                 <Row className="show-grid">
                     {this.props.post ?
                         <Col md={8}>
-                            <h1>{post.title}</h1>
-                            <p className="lead">
-                                <Link to={`/${category}`} >
-                                    {category}
-                                </Link>
-                            </p>
-                            <hr />
-                            <p>
-                                <span className="glyphicon glyphicon-time"></span>
-                                {post.author} on {formatDate(post.timestamp)}
-                            </p>
-                            <hr />
-                            <p className="lead">{post.body}</p>
+                            <Row className="show-grid">
+                                <Col md={10}>
+                                    <h1>{post.title}</h1>
+                                    <p className="lead">
+                                        <Link to={`/${post.category}`} >
+                                            {post.category}
+                                        </Link>
+                                    </p>
 
+                                </Col>
+                            </Row>
+                            <hr />
+                            <Row className="show-grid">
+                                <Col md={8}>
+                                    <p>
+                                        <span className="glyphicon glyphicon-time"> </span>
+                                        {post.author} on {formatDate(post.timestamp)}
+                                    </p>
+                                </Col>
+                                <Col md={4}>
+                                    <ButtonToolbar>
+                                        <Link to={`/post/edit/${post.id}`} >
+                                            <Button bsSize="lg" bsStyle="primary" title="Editar">
+                                                <Glyphicon glyph="edit" />
+                                            </Button>
+                                        </Link>
+                                        <Button bsSize="lg" bsStyle="danger" title="Remover">
+                                            <Glyphicon glyph="remove" />
+                                        </Button>
+                                    </ButtonToolbar>
+                                </Col>
+
+                            </Row>
+                            <hr />
+                            <Row className="show-grid">
+                                <Col md={12}>
+                                    <p className="lead">{post.body}</p>
+                                </Col>
+
+                            </Row>
+                            <hr />
                             <Row className="show-grid">
                                 <Col md={2}>
                                     <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
                                 </Col>
                                 <Vote dispatch={dispatch} objeto={post} typeObject={'post'} />
+
                             </Row>
                             <hr />
-
                             <NewComment post_id={post.id} />
-
                             <hr />
-                            { /** Comment */}
                             <Comment post_id={post_id} />
                         </Col>
                         : null}

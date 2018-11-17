@@ -25,6 +25,14 @@ export function formatPost({ category, author, body, title }) {
   }
 }
 
+export function formatPostEdit({ body, title }) {
+  return {
+    body: body,
+    title: title,
+  }
+}
+
+
 export function formatComment({ author, body, post_id }) {
   return {
     id: uuidv4(),

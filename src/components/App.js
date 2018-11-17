@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
 
 class App extends Component {
-  componentDidMount(){
+
+  componentWillMount(){
     this.props.dispatch(handleInitialData())
   }
 

@@ -3,6 +3,7 @@ import * as API from '../utils/LeituraAPI'
 export const RECEIVE_POSTS = "RECEIVE_POSTS"
 export const UPDATE_POST = "UPDATE_POST"
 export const ADD_POST = "ADD_POST"
+export const EDIT_POST = "EDIT_POST"
 export const ADD_COMMENT_POST = "ADD_COMMENT_POST"
 
 
@@ -10,6 +11,13 @@ export function addPost(posts) {
     return {
         type: ADD_POST,
         posts,
+    }
+}
+
+export function editPost(post) {
+    return {
+        type: EDIT_POST,
+        post,
     }
 }
 
@@ -54,5 +62,15 @@ export function handleAddPost(category, author, body, title) {
             category, author, body, title
         })
             .then((posts) => dispatch(addPost(posts)))
+    }
+}
+
+export function handleEditPost(post_id, body, title) {
+    return (dispatch) => {
+        console.log("body: " + body)
+        return API.editPost({
+            post_id, body, title
+        })
+            .then((post) => dispatch(editPost(post)))
     }
 }

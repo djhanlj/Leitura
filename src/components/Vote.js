@@ -5,22 +5,22 @@ import { handleToggleVoteComment } from '../actions/comment'
 
 class Vote extends Component {
 
-    handleVote= (e, objeto, typeObject, typeVote) => {
+    handleVote = (e, objeto, typeObject, typeVote) => {
         e.preventDefault()
         const { dispatch } = this.props
 
-        if(typeObject === 'post'){ 
+        if (typeObject === 'post') {
             dispatch(handleToggleVotePost({
                 id: objeto.id,
                 voto: typeVote,
-                voteScore: (typeVote  === 'upVote') ? objeto.voteScore + 1 : objeto.voteScore - 1 
-            })) 
-        } else{
+                voteScore: (typeVote === 'upVote') ? objeto.voteScore + 1 : objeto.voteScore - 1
+            }))
+        } else {
             dispatch(handleToggleVoteComment({
                 id: objeto.id,
                 voto: typeVote,
-                voteScore: (typeVote  === 'upVote') ? objeto.voteScore + 1 : objeto.voteScore - 1 
-            })) 
+                voteScore: (typeVote === 'upVote') ? objeto.voteScore + 1 : objeto.voteScore - 1
+            }))
         }
 
     }
@@ -29,13 +29,13 @@ class Vote extends Component {
         const { objeto, typeObject } = this.props
         return (
             <Col md={5}>
-            <ButtonToolbar>
-                <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto, typeObject, 'upVote')}>
-                    <Glyphicon glyph="thumbs-up" />
-                </Button>
-                <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto,  typeObject, 'downVote')}>
-                    <Glyphicon glyph="thumbs-down" />
-                </Button>
+                <ButtonToolbar>
+                    <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto, typeObject, 'upVote')}>
+                        <Glyphicon glyph="thumbs-up" />
+                    </Button>
+                    <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto, typeObject, 'downVote')}>
+                        <Glyphicon glyph="thumbs-down" />
+                    </Button>
                 </ButtonToolbar>
             </Col>
         )

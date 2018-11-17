@@ -8,7 +8,7 @@ import NewPost from './NewPost';
 
 class Dashboard extends Component {
    verificaCategories(){
-    return (this.props && this.props.categories.length > 0)
+    return (this.props && this.props.posts.length > 0)
      ? true
      : false
    } 
@@ -23,6 +23,7 @@ class Dashboard extends Component {
               <Route exact path="/:category?" component={Home} />
               <Route path={`/:category/:post_id` } component={ PostDetail } />
               <Route path={`/post/create` } component={ NewPost } />
+              <Route path={`/post/edit/:post_id` } component={ NewPost } />
               </div>
               : null }
 
@@ -32,9 +33,10 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({categories}){
+function mapStateToProps({categories, posts}){
   return {
-    categories
+    categories,
+    posts,
   }
 }
 

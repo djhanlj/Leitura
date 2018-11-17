@@ -1,4 +1,4 @@
-import { formatPost, formatComment } from '../utils/helpers'
+import { formatPost, formatComment, formatPostEdit } from '../utils/helpers'
 
 const api = "http://localhost:3001"
 
@@ -58,6 +58,15 @@ export function savePost(category, author, body, title) {
     method: 'POST',
     headers,
     body: JSON.stringify(formatPost(category, author, body, title))
+  }).then(res => res.json())
+    .then(data => data)
+}
+
+export function editPost(post_id, body, title) {
+  return fetch(`${api}/posts/${post_id}`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify(formatPostEdit( body, title ))
   }).then(res => res.json())
     .then(data => data)
 }

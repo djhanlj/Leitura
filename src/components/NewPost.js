@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, HelpBlock } from 'react-bootstrap';
-import { handleAddPost } from '../actions/post'
+import { handleAddPost, handleEditPost } from '../actions/post'
 
 
 class NewPost extends Component {
@@ -12,30 +12,64 @@ class NewPost extends Component {
         body: '',
         author: '',
         category: '',
+        desabilitado: false
+    }
+
+    componentWillMount() {
+        const { post } = this.props
+        if (post)
+            this.setState({
+                title: post.title,
+                body: post.body,
+                author: post.author,
+                category: post.category,
+                desabilitado: true,
+            });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.post)
+            this.setState({
+                title: nextProps.post.title,
+                body: nextProps.post.body,
+                author: nextProps.post.author,
+                category: nextProps.post.category,
+                desabilitado: true,
+            });
     }
 
     handleChangeFor = (propertyName) => (event) => {
         this.setState({ [propertyName]: event.target.value });
+        //console.log([propertyName] +" "+ event.target.value)
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
         const { category, author, body, title } = this.state
         const { dispatch } = this.props
-        dispatch(handleAddPost(category, author, body, title))
-        this.props.history.push(`/${category}`)
+        const { post_id } = this.props.match.params
+
+        if (!post_id) {
+            dispatch(handleAddPost(category, author, body, title))
+            this.props.history.push(`/${category}`)
+        } else {
+            dispatch(handleEditPost(post_id, body, title))
+            this.props.history.push(`/post/${post_id}`)
+        }
     }
 
-
     render() {
-        const { category, author, body, title } = this.state
+        const { category, author, body, title, desabilitado } = this.state
         const { categories } = this.props
 
+
+
         return (
+
             <Grid className="body">
                 <Row className="show-grid">
                     <Col lg={10} md={9}>
-                        <h1>Criar Post </h1>
+                        {!desabilitado ? <h1>Criar Post </h1> : <h1>Editar Post</h1>}
                     </Col>
                 </Row>
                 <Row className="show-grid">
@@ -43,7 +77,10 @@ class NewPost extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <FormGroup controlId="formControlsSelect">
                                 <ControlLabel>Categorias</ControlLabel>
-                                <FormControl componentClass="select" placeholder="select" value={category} onChange={this.handleChangeFor('category')} >
+                                <FormControl componentClass="select" placeholder="select"
+                                    value={category}
+                                    onChange={this.handleChangeFor('category')}
+                                    disabled={desabilitado} >
                                     {categories.map((categorie, index) => (
                                         <option key={index} value={categorie.name}>{categorie.name}</option>
                                     ))}
@@ -57,6 +94,7 @@ class NewPost extends Component {
                                 type="text"
                                 label="Autor"
                                 placeholder="Enter text"
+                                disabled={desabilitado}
                             />
 
                             <FieldGroup
@@ -78,9 +116,7 @@ class NewPost extends Component {
                             </FormGroup>
 
                             <Button type="submit">Submit</Button>
-
                         </form>
-
                     </Col>
                 </Row>
             </Grid>
@@ -88,9 +124,17 @@ class NewPost extends Component {
     }
 }
 
-function mapStateToProps({ categories }) {
+
+function mapStateToProps({ posts, categories }, { match }) {
+    const { post_id } = match.params
+    const post = posts.find(post => post.id === post_id)
+
+
+
     return {
-        categories
+        categories,
+        posts,
+        post,
     }
 }
 
