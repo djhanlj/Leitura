@@ -2,18 +2,20 @@ import React, { Component, Fragment } from 'react'
 import { Row, Col, Badge, Glyphicon } from 'react-bootstrap';
 import { connect } from 'react-redux'
 import Vote from './Vote'
+import Order from './Order'
 import { formatDate } from '../utils/helpers'
 import { Link, withRouter } from 'react-router-dom'
 
 class Posts extends Component {
 
   render() {
-    const { posts, dispatch, category } = this.props
-    let arrayPosts
-    arrayPosts = category ? posts.filter(post => post.category === category) : posts
+    const { posts, dispatch, category, arrayPosts } = this.props
 
     return (
       <Fragment>
+        <hr />
+        <Order dispatch={dispatch} />
+        <hr />
         {arrayPosts.map((post, index) => (
           <Fragment key={index}>
             <div className="post-preview">
@@ -46,9 +48,15 @@ class Posts extends Component {
 }
 
 function mapStateToProps({ posts }, { category }) {
+
+  //const arrayPosts
+  const arrayPosts = category ? posts.filter(post => post.category === category) : posts
+  console.log(arrayPosts)
+
   return {
     posts,
     category,
+    arrayPosts,
   }
 }
 

@@ -41,7 +41,7 @@ class NewComment extends Component {
                                     value={body}
                                     onChange={this.handleChangeFor('body')}
                                     componentClass="textarea"
-                                    placeholder="textarea" />
+                                    placeholder="Comentário" />
                             </FormGroup>
 
                             <FieldGroup
@@ -50,7 +50,7 @@ class NewComment extends Component {
                                 onChange={this.handleChangeFor('author')}
                                 type="text"
                                 label="Autor"
-                                placeholder="Enter text"
+                                placeholder="Autor"
                             />
                             <Button type="submit">Submit</Button>
                         </form>

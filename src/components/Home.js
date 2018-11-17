@@ -18,7 +18,7 @@ class Home extends Component {
           <Col lg={2} md={2}>
             <h3 className="post-title">
               <Link to={`/post/create`} >
-                <Button bsStyle="primary" bsSize="large">
+                <Button bsStyle="primary">
                   Criar Post
                 </Button>
               </Link>

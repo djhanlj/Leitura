@@ -1,4 +1,5 @@
-import { RECEIVE_POSTS, UPDATE_POST, ADD_POST, ADD_COMMENT_POST, EDIT_POST, REMOVE_POST, REDUCER_COMMENT_POST } from '../actions/post'
+import sortBy from 'sort-by'
+import { RECEIVE_POSTS, UPDATE_POST, ADD_POST, ADD_COMMENT_POST, EDIT_POST, REMOVE_POST, REDUCER_COMMENT_POST, ORDER_BY_POST } from '../actions/post'
 
 export default function posts(state = [], action) {
     switch (action.type) {
@@ -22,9 +23,13 @@ export default function posts(state = [], action) {
         case ADD_COMMENT_POST:
             return state.map(post => post.id === action.post_id ? { ...post, commentCount: post.commentCount + 1 } : post)
 
-
         case REDUCER_COMMENT_POST:
             return state.map(post => post.id === action.id ? { ...post, commentCount: post.commentCount - 1 } : post)
+
+        case ORDER_BY_POST:
+            return action.typOrder === 'asc'
+                ? state.sort(sortBy('voteScore'))
+                : state.sort(sortBy('-id', 'voteScore'))
 
         default:
             return state

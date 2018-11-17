@@ -15,7 +15,7 @@ class NewPost extends Component {
         desabilitado: false
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { post } = this.props
         if (post)
             this.setState({
@@ -27,7 +27,7 @@ class NewPost extends Component {
             });
     }
 
-    componentWillReceiveProps(nextProps) {
+   componentWillReceiveProps(nextProps) {
         if (nextProps.post)
             this.setState({
                 title: nextProps.post.title,
@@ -37,10 +37,9 @@ class NewPost extends Component {
                 desabilitado: true,
             });
     }
-
+ 
     handleChangeFor = (propertyName) => (event) => {
         this.setState({ [propertyName]: event.target.value });
-        //console.log([propertyName] +" "+ event.target.value)
     }
 
     handleSubmit = (e) => {
@@ -62,10 +61,7 @@ class NewPost extends Component {
         const { category, author, body, title, desabilitado } = this.state
         const { categories } = this.props
 
-
-
         return (
-
             <Grid className="body">
                 <Row className="show-grid">
                     <Col lg={10} md={9}>
@@ -128,9 +124,6 @@ class NewPost extends Component {
 function mapStateToProps({ posts, categories }, { match }) {
     const { post_id } = match.params
     const post = posts.find(post => post.id === post_id)
-
-
-
     return {
         categories,
         posts,

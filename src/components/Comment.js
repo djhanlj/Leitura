@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, Badge, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
-
 import { handleComments } from '../actions/comment'
 import { formatDate } from '../utils/helpers'
 import Vote from './Vote'
@@ -42,9 +40,6 @@ class Comment extends Component {
                                     </Col>
                                     <Col md={4}>
                                         <ButtonToolbar>
-                                            <Button bsSize="small" title="Editar">
-                                                <Glyphicon glyph="edit" />
-                                            </Button>
                                             <Button bsSize="small" title="Remover" onClick={(e) => this.removeComment(e, comment.id)} >
                                                 <Glyphicon glyph="remove" />
                                             </Button>

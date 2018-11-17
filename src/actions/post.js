@@ -7,8 +7,12 @@ export const EDIT_POST = "EDIT_POST"
 export const ADD_COMMENT_POST = "ADD_COMMENT_POST"
 export const REMOVE_POST = "REMOVE_POST"
 export const REDUCER_COMMENT_POST = "REDUCER_COMMENT_POST"
+export const ORDER_BY_POST = "ORDER_BY_POST"
 
-
+/**
+ * 
+ * @param {*} posts 
+ */
 export function addPost(posts) {
     return {
         type: ADD_POST,
@@ -16,6 +20,10 @@ export function addPost(posts) {
     }
 }
 
+/**
+ * 
+ * @param {*} posts 
+ */
 export function editPost(posts) {
     return {
         type: EDIT_POST,
@@ -23,6 +31,10 @@ export function editPost(posts) {
     }
 }
 
+/**
+ * 
+ * @param {*} param0 
+ */
 export function removePost({id, deleted}) {
     return {
         type: REMOVE_POST,
@@ -31,6 +43,10 @@ export function removePost({id, deleted}) {
     }
 }
 
+/**
+ * 
+ * @param {*} post_id 
+ */
 export function addComentPost(post_id) {
     return {
         type: ADD_COMMENT_POST,
@@ -38,6 +54,10 @@ export function addComentPost(post_id) {
     }
 }
 
+/**
+ * 
+ * @param {*} id 
+ */
 export function reducerComentPost(id) {
     return {
         type: REDUCER_COMMENT_POST,
@@ -45,11 +65,26 @@ export function reducerComentPost(id) {
     }
 }
 
-
+/**
+ * 
+ * @param {*} posts 
+ */
 export function receivePosts(posts) {
     return {
         type: RECEIVE_POSTS,
         posts,
+    }
+}
+
+/**
+ * 
+ * @param {*} param0 
+ */
+ 
+export function handleOrderBy(typOrder) {
+    return {
+        type: ORDER_BY_POST,
+        typOrder,
     }
 }
 
@@ -61,7 +96,10 @@ export function toggleVotePost({ id, voteScore }) {
     }
 }
 
-
+/**
+ * 
+ * @param {*} post 
+ */
 export function handleToggleVotePost(post) {
     return (dispatch) => {
         dispatch(toggleVotePost(post))
@@ -72,7 +110,13 @@ export function handleToggleVotePost(post) {
     }
 }
 
-
+/**
+ * 
+ * @param {*} category 
+ * @param {*} author 
+ * @param {*} body 
+ * @param {*} title 
+ */
 export function handleAddPost(category, author, body, title) {
     return (dispatch) => {
         return API.savePost(
@@ -82,6 +126,12 @@ export function handleAddPost(category, author, body, title) {
     }
 }
 
+/**
+ * 
+ * @param {*} id 
+ * @param {*} body 
+ * @param {*} title 
+ */
 export function handleEditPost(id, body, title) {
     return (dispatch) => {
         return API.editPost(
@@ -90,6 +140,10 @@ export function handleEditPost(id, body, title) {
     }
 }
 
+/**
+ * 
+ * @param {*} id 
+ */
 export function handleRemovePost(id) {
     return (dispatch) => {
         return API.removePost(id).then((post) => dispatch(removePost(post)))
