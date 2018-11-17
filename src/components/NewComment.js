@@ -20,8 +20,12 @@ class NewComment extends Component {
         e.preventDefault()
         const { author, body } = this.state
         const { dispatch, post_id } = this.props
-
         dispatch(handleAddComment(author, body, post_id))
+
+        this.setState(() => ({
+            body: '',
+            author: '',
+          }))
     }
     render() {
         const { author, body } = this.state

@@ -12,8 +12,8 @@ export default function posts(state = [], action) {
             return state.concat(action.posts)
 
         case EDIT_POST:
-            return state.map(post => post.id === action.post.id
-                ? { ...post, title: action.post.title, body: action.post.body }
+            return state.map(post => post.id === action.posts.id
+                ? { ...post, title: action.posts.title, body: action.posts.body }
                 : post)
 
 

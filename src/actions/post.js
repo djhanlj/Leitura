@@ -14,10 +14,10 @@ export function addPost(posts) {
     }
 }
 
-export function editPost(post) {
+export function editPost(posts) {
     return {
         type: EDIT_POST,
-        post,
+        posts,
     }
 }
 
@@ -58,19 +58,18 @@ export function handleToggleVotePost(post) {
 
 export function handleAddPost(category, author, body, title) {
     return (dispatch) => {
-        return API.savePost({
+        return API.savePost(
             category, author, body, title
-        })
+        )
             .then((posts) => dispatch(addPost(posts)))
     }
 }
 
-export function handleEditPost(post_id, body, title) {
+export function handleEditPost(id, body, title) {
     return (dispatch) => {
-        console.log("body: " + body)
-        return API.editPost({
-            post_id, body, title
-        })
-            .then((post) => dispatch(editPost(post)))
+        //dispatch(editPost({id, body, title}))
+        return API.editPost(
+            id, body, title
+        ).then((post) => dispatch(editPost(post)))
     }
 }
