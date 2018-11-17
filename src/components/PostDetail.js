@@ -8,7 +8,18 @@ import Comment from './Comment'
 import Vote from './Vote'
 import NewComment from './NewComment'
 
+import { handleRemovePost } from '../actions/post'
+
 class PostDetail extends Component {
+
+    removePost = (e, id) => {
+        const { dispatch } = this.props
+        e.preventDefault()
+
+        dispatch(handleRemovePost(id))
+        this.props.history.push(`/`)
+      }
+
 
     render() {
         const { post, post_id, dispatch } = this.props
@@ -25,7 +36,6 @@ class PostDetail extends Component {
                                             {post.category}
                                         </Link>
                                     </p>
-
                                 </Col>
                             </Row>
                             <hr />
@@ -39,23 +49,21 @@ class PostDetail extends Component {
                                 <Col md={4}>
                                     <ButtonToolbar>
                                         <Link to={`/post/edit/${post.id}`} >
-                                            <Button bsSize="lg" bsStyle="primary" title="Editar">
+                                            <Button bsSize="small" bsStyle="primary" title="Editar">
                                                 <Glyphicon glyph="edit" />
                                             </Button>
                                         </Link>
-                                        <Button bsSize="lg" bsStyle="danger" title="Remover">
+                                        <Button bsSize="small" bsStyle="danger" title="Remover" onClick={(e) => this.removePost(e, post.id)} >
                                             <Glyphicon glyph="remove" />
                                         </Button>
                                     </ButtonToolbar>
                                 </Col>
-
                             </Row>
                             <hr />
                             <Row className="show-grid">
                                 <Col md={12}>
                                     <p className="lead">{post.body}</p>
                                 </Col>
-
                             </Row>
                             <hr />
                             <Row className="show-grid">
@@ -63,7 +71,6 @@ class PostDetail extends Component {
                                     <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
                                 </Col>
                                 <Vote dispatch={dispatch} objeto={post} typeObject={'post'} />
-
                             </Row>
                             <hr />
                             <NewComment post_id={post.id} />

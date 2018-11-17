@@ -1,10 +1,11 @@
 import * as API from '../utils/LeituraAPI'
-import { addComentPost  } from './post'
+import { addComentPost, reducerComentPost  } from './post'
 
 
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 
 
 
@@ -14,6 +15,19 @@ export function addComment(comments) {
         comments,
     }
 }
+
+/**
+ * 
+ * @param {*} comments 
+ */
+export function removeComment({id, deleted}) {
+    return {
+        type: REMOVE_COMMENT,
+        id, 
+        deleted,
+    }
+}
+
 
 /**
  * @param  {} comments
@@ -55,11 +69,21 @@ export function handleToggleVoteComment(comment) {
 
 export function handleAddComment(author, body, post_id) {
     return (dispatch) => {
-
-        dispatch(addComentPost(post_id)) 
-        
         return API.saveComment({
             author, body, post_id
-        }).then((comments) => dispatch(addComment(comments)))
+        }).then((comments) => {
+            dispatch(addComment(comments))
+            dispatch(addComentPost(post_id)) 
+        })
+    }
+}
+
+export function handleRemoveComment(id, post_id) {
+    return (dispatch) => {
+        return API.removeComment(id)
+        .then((comments) => {
+            dispatch(removeComment(comments))
+            dispatch(reducerComentPost(post_id)) 
+        })
     }
 }

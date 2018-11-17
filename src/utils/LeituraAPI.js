@@ -71,6 +71,28 @@ export function editPost(post_id, body, title) {
     .then(data => data)
 }
 
+/**
+ * 
+ * @param {*} id 
+ */
+export function removePost(id) {
+  return fetch(`${api}/posts/${id}`, {
+    method: 'DELETE',
+    headers,
+  }).then(res => res.json())
+    .then(data => data)
+}
+
+export function removeComment(id) {
+  return fetch(`${api}/comments/${id}`, {
+    method: 'DELETE',
+    headers,
+  }).then(res => res.json())
+    .then(data => data)
+}
+
+
+
 
 export function saveComment(author, body, post_id) {
   return fetch(`${api}/comments`, {

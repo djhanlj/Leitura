@@ -13,13 +13,13 @@ class Home extends Component {
       <Grid className="body">
         <Row className="show-grid">
           <Col lg={10} md={9}>
-            <h1>Post { toUpperCaseText(category) } </h1>
+            <h1>Post {toUpperCaseText(category)} </h1>
           </Col>
           <Col lg={2} md={2}>
             <h3 className="post-title">
               <Link to={`/post/create`} >
                 <Button bsStyle="primary" bsSize="large">
-                Criar Post
+                  Criar Post
                 </Button>
               </Link>
             </h3>

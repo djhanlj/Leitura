@@ -15,7 +15,6 @@ class NewComment extends Component {
         this.setState({ [propertyName]: event.target.value });
     }
 
-
     handleSubmit = (e) => {
         e.preventDefault()
         const { author, body } = this.state
@@ -25,7 +24,7 @@ class NewComment extends Component {
         this.setState(() => ({
             body: '',
             author: '',
-          }))
+        }))
     }
     render() {
         const { author, body } = this.state

@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, UPDATE_POST, ADD_POST, ADD_COMMENT_POST, EDIT_POST } from '../actions/post'
+import { RECEIVE_POSTS, UPDATE_POST, ADD_POST, ADD_COMMENT_POST, EDIT_POST, REMOVE_POST, REDUCER_COMMENT_POST } from '../actions/post'
 
 export default function posts(state = [], action) {
     switch (action.type) {
@@ -16,9 +16,15 @@ export default function posts(state = [], action) {
                 ? { ...post, title: action.posts.title, body: action.posts.body }
                 : post)
 
+        case REMOVE_POST:
+            return state.filter(post => post.id !== action.id)
 
         case ADD_COMMENT_POST:
             return state.map(post => post.id === action.post_id ? { ...post, commentCount: post.commentCount + 1 } : post)
+
+
+        case REDUCER_COMMENT_POST:
+            return state.map(post => post.id === action.id ? { ...post, commentCount: post.commentCount - 1 } : post)
 
         default:
             return state

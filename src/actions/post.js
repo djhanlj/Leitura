@@ -5,6 +5,8 @@ export const UPDATE_POST = "UPDATE_POST"
 export const ADD_POST = "ADD_POST"
 export const EDIT_POST = "EDIT_POST"
 export const ADD_COMMENT_POST = "ADD_COMMENT_POST"
+export const REMOVE_POST = "REMOVE_POST"
+export const REDUCER_COMMENT_POST = "REDUCER_COMMENT_POST"
 
 
 export function addPost(posts) {
@@ -21,10 +23,25 @@ export function editPost(posts) {
     }
 }
 
+export function removePost({id, deleted}) {
+    return {
+        type: REMOVE_POST,
+        id, 
+        deleted,
+    }
+}
+
 export function addComentPost(post_id) {
     return {
         type: ADD_COMMENT_POST,
         post_id,
+    }
+}
+
+export function reducerComentPost(id) {
+    return {
+        type: REDUCER_COMMENT_POST,
+        id,
     }
 }
 
@@ -67,9 +84,14 @@ export function handleAddPost(category, author, body, title) {
 
 export function handleEditPost(id, body, title) {
     return (dispatch) => {
-        //dispatch(editPost({id, body, title}))
         return API.editPost(
             id, body, title
         ).then((post) => dispatch(editPost(post)))
+    }
+}
+
+export function handleRemovePost(id) {
+    return (dispatch) => {
+        return API.removePost(id).then((post) => dispatch(removePost(post)))
     }
 }

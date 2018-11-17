@@ -7,33 +7,33 @@ import PostDetail from './PostDetail';
 import NewPost from './NewPost';
 
 class Dashboard extends Component {
-   verificaCategories(){
+  verificaCategories() {
     return (this.props && this.props.posts.length > 0)
-     ? true
-     : false
-   } 
- 
+      ? true
+      : false
+  }
+
   render() {
     return (
       <Router>
-         <Fragment>
-          {this.verificaCategories 
-              ? <div>
-              <Navbar categories = { this.props.categories } />
+        <Fragment>
+          {this.verificaCategories
+            ? <div>
+              <Navbar categories={this.props.categories} />
               <Route exact path="/:category?" component={Home} />
-              <Route path={`/:category/:post_id` } component={ PostDetail } />
-              <Route path={`/post/create` } component={ NewPost } />
-              <Route path={`/post/edit/:post_id` } component={ NewPost } />
-              </div>
-              : null }
+              <Route path={`/:category/:post_id`} component={PostDetail} />
+              <Route path={`/post/create`} component={NewPost} />
+              <Route path={`/post/edit/:post_id`} component={NewPost} />
+            </div>
+            : null}
 
-          </Fragment>
+        </Fragment>
       </Router>
     );
   }
 }
 
-function mapStateToProps({categories, posts}){
+function mapStateToProps({ categories, posts }) {
   return {
     categories,
     posts,
