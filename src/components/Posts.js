@@ -9,7 +9,7 @@ import { Link, withRouter } from 'react-router-dom'
 class Posts extends Component {
 
   render() {
-    const { posts, dispatch, category, arrayPosts } = this.props
+    const { dispatch,arrayPosts } = this.props
 
     return (
       <Fragment>
@@ -24,8 +24,8 @@ class Posts extends Component {
                   {post.title}
                 </Link>
               </h2>
-              <p className="post-meta">Posted by
-                   {post.author} on {formatDate(post.timestamp)}
+              <p className="post-meta">Posted by 
+                   { post.author } on {formatDate(post.timestamp)}
               </p>
               <Row className="show-grid">
                 <Col md={1}>
@@ -48,11 +48,7 @@ class Posts extends Component {
 }
 
 function mapStateToProps({ posts }, { category }) {
-
-  //const arrayPosts
   const arrayPosts = category ? posts.filter(post => post.category === category) : posts
-  console.log(arrayPosts)
-
   return {
     posts,
     category,

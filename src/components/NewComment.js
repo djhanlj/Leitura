@@ -32,7 +32,7 @@ class NewComment extends Component {
         return (
             <Grid className="body">
                 <Row className="show-grid">
-                    <h4>Comment:</h4>
+                    <h4>Novo Comentário:</h4>
                     <Col lg={8} md={10}>
                         <form onSubmit={this.handleSubmit}>
                             <FormGroup controlId="formControlsTextarea">

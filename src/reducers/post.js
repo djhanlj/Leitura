@@ -4,7 +4,7 @@ import { RECEIVE_POSTS, UPDATE_POST, ADD_POST, ADD_COMMENT_POST, EDIT_POST, REMO
 export default function posts(state = [], action) {
     switch (action.type) {
         case RECEIVE_POSTS:
-            return action.posts
+            return action.posts.sort(sortBy('voteScore'))
 
         case UPDATE_POST:
             return state.map(post => post.id === action.id ? { ...post, voteScore: action.voteScore } : post)
@@ -27,9 +27,7 @@ export default function posts(state = [], action) {
             return state.map(post => post.id === action.id ? { ...post, commentCount: post.commentCount - 1 } : post)
 
         case ORDER_BY_POST:
-            return action.typOrder === 'asc'
-                ? state.sort(sortBy('voteScore'))
-                : state.sort(sortBy('-id', 'voteScore'))
+            return state.slice().sort(action.typOrder === 'asc' ? sortBy('voteScore') : sortBy('-voteScore'))
 
         default:
             return state
