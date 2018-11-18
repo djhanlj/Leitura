@@ -7,8 +7,6 @@ const headers = {
   'Authorization': 'whatever-you-want'
 }
 
-
-
 export function getInitialData() {
   return Promise.all([
     getCategories(),
@@ -18,7 +16,6 @@ export function getInitialData() {
     posts,
   }))
 }
-
 
 /**
  * fetch Categorias from api
@@ -36,7 +33,6 @@ export const getPosts = () =>
     .then(res => res.json())
     .then(data => data)
 
-
 /**
  * @param  {} post_id
  * @returns {{type: comments}}
@@ -46,13 +42,23 @@ export const getComments = (post_id) =>
     .then(res => res.json())
     .then(data => data)
 
-
+/**
+ * 
+ * @param {*} cateogry 
+ */
 export const getCategoryPosts = (cateogry) =>
   fetch(`${api}/${cateogry}/posts`, { headers })
     .then(res => res.json())
     .then(data => data)
 
 
+/**
+ * 
+ * @param {*} category 
+ * @param {*} author 
+ * @param {*} body 
+ * @param {*} title 
+ */    
 export function savePost(category, author, body, title) {
   return fetch(`${api}/posts`, {
     method: 'POST',
@@ -62,6 +68,12 @@ export function savePost(category, author, body, title) {
     .then(data => data)
 }
 
+/**
+ * 
+ * @param {*} post_id 
+ * @param {*} body 
+ * @param {*} title 
+ */
 export function editPost(post_id, body, title) {
   return fetch(`${api}/posts/${post_id}`, {
     method: 'PUT',
@@ -83,6 +95,10 @@ export function removePost(id) {
     .then(data => data)
 }
 
+/**
+ * 
+ * @param {*} id 
+ */
 export function removeComment(id) {
   return fetch(`${api}/comments/${id}`, {
     method: 'DELETE',
@@ -91,9 +107,12 @@ export function removeComment(id) {
     .then(data => data)
 }
 
-
-
-
+/**
+ * 
+ * @param {*} author 
+ * @param {*} body 
+ * @param {*} post_id 
+ */
 export function saveComment(author, body, post_id) {
   return fetch(`${api}/comments`, {
     method: 'POST',
@@ -103,6 +122,10 @@ export function saveComment(author, body, post_id) {
     .then(data => data)
 }
 
+/**
+ * 
+ * @param {*} param0 
+ */
 export function handleToggleVotingPost({ id, voto }) {
   return fetch(`${api}/posts/${id}`, {
     method: 'POST',
@@ -111,9 +134,12 @@ export function handleToggleVotingPost({ id, voto }) {
   })
     .then(res => res.json())
     .then(data => data)
-
 }
 
+/**
+ * 
+ * @param {*} param0 
+ */
 export function handleToggleVotingComment({ id, voto }) {
   return fetch(`${api}/comments/${id}`, {
     method: 'POST',
@@ -122,6 +148,5 @@ export function handleToggleVotingComment({ id, voto }) {
   })
     .then(res => res.json())
     .then(data => data)
-
 }
 
