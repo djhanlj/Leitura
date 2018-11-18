@@ -3,16 +3,16 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, HelpBlock } from 'react-bootstrap';
 import { handleAddPost, handleEditPost } from '../actions/post'
-
+import MensagemAlert from './MensagemAlert'
 
 class NewPost extends Component {
-
     state = {
         title: '',
         body: '',
         author: '',
         category: '',
-        desabilitado: false
+        desabilitado: false,
+        showAlert: false,
     }
 
     componentDidMount() {
@@ -29,18 +29,18 @@ class NewPost extends Component {
 
     componentDidUpdate(prevProps) {
         const { post, posts, post_id } = this.props
-        if ( post_id && posts.length > prevProps.posts.length) {
+        if (post_id && posts.length > prevProps.posts.length) {
             this.setState({
                 title: post.title,
                 body: post.body,
                 author: post.author,
                 category: post.category,
                 desabilitado: true,
+                
             });
         }
-            
     }
- 
+
     handleChangeFor = (propertyName) => (event) => {
         this.setState({ [propertyName]: event.target.value });
     }
@@ -51,26 +51,37 @@ class NewPost extends Component {
         const { dispatch } = this.props
         const { post_id } = this.props.match.params
 
-        if (!post_id) {
-            dispatch(handleAddPost(category, author, body, title))
-            this.props.history.push(`/${category}`)
-        } else {
-            dispatch(handleEditPost(post_id, body, title))
-            this.props.history.push(`/post/${post_id}`)
+        if (author === '' || body === '' || title === '') {
+            this.setState({ showAlert: true });
+            return false;
         }
+         if (!post_id) {
+             dispatch(handleAddPost(category, author, body, title))
+             this.props.history.push(`/${category}`)
+         } else {
+             dispatch(handleEditPost(post_id, body, title))
+             this.props.history.push(`/post/${post_id}`)
+         } 
+         this.setState({ showAlert: false });
     }
 
     render() {
-        const { category, author, body, title, desabilitado } = this.state
+        const { category, author, body, title, desabilitado, showAlert } = this.state
         const { categories } = this.props
 
         return (
             <Grid className="body">
+                <MensagemAlert 
+                    showAlert={showAlert} 
+                    textMensagem="Todos os campos devem ser preenchidos!" 
+                    typeAlert ='danger'  />
+
                 <Row className="show-grid">
                     <Col lg={10} md={9}>
                         {!desabilitado ? <h1>Criar Post </h1> : <h1>Editar Post</h1>}
                     </Col>
                 </Row>
+
                 <Row className="show-grid">
                     <Col lg={8} md={10}>
                         <form onSubmit={this.handleSubmit}>
@@ -114,7 +125,7 @@ class NewPost extends Component {
                                     placeholder="textarea" />
                             </FormGroup>
 
-                            <Button type="submit">Submit</Button>
+                            <Button type="submit">Salvar</Button>
                         </form>
                     </Col>
                 </Row>
@@ -122,7 +133,6 @@ class NewPost extends Component {
         )
     }
 }
-
 
 function mapStateToProps({ posts, categories }, { match }) {
     const { post_id } = match.params
@@ -144,6 +154,5 @@ function FieldGroup({ id, label, help, ...props }) {
         </FormGroup>
     );
 }
-
 
 export default withRouter(connect(mapStateToProps)(NewPost));

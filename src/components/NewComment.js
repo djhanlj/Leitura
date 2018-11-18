@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, HelpBlock } from 'react-bootstrap';
 import { handleAddComment } from '../actions/comment'
-
+import MensagemAlert from './MensagemAlert'
 
 class NewComment extends Component {
-
     state = {
         body: '',
         author: '',
+        showAlert: false,
     }
 
     handleChangeFor = (propertyName) => (event) => {
@@ -19,18 +19,30 @@ class NewComment extends Component {
         e.preventDefault()
         const { author, body } = this.state
         const { dispatch, post_id } = this.props
+
+        if (author === '' || body === '') {
+            this.setState({ showAlert: true });
+            return false;
+        }
+
         dispatch(handleAddComment(author, body, post_id))
 
         this.setState(() => ({
             body: '',
             author: '',
+            showAlert: false,
         }))
     }
     render() {
-        const { author, body } = this.state
+        const { author, body, showAlert } = this.state
 
         return (
             <Grid className="body">
+                <MensagemAlert 
+                        showAlert={showAlert} 
+                        textMensagem="Todos os campos do formulário de comentários devem ser preenchidos!" 
+                        typeAlert ='danger' />
+
                 <Row className="show-grid">
                     <h4>Novo Comentário:</h4>
                     <Col lg={8} md={10}>
@@ -52,7 +64,7 @@ class NewComment extends Component {
                                 label="Autor"
                                 placeholder="Autor"
                             />
-                            <Button type="submit">Submit</Button>
+                            <Button type="submit">Salvar</Button>
                         </form>
                     </Col>
                 </Row>
@@ -70,6 +82,5 @@ function FieldGroup({ id, label, help, ...props }) {
         </FormGroup>
     );
 }
-
 
 export default connect()(NewComment);
