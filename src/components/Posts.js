@@ -24,8 +24,8 @@ class Posts extends Component {
                   {post.title}
                 </Link>
               </h2>
-              <p className="post-meta">Posted by 
-                   { post.author } on {formatDate(post.timestamp)}
+              <p className="post-meta">
+              Posted by { post.author } on {formatDate(post.timestamp)}
               </p>
               <Row className="show-grid">
                 <Col md={1}>

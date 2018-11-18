@@ -42,8 +42,8 @@ class PostDetail extends Component {
                             <Row className="show-grid">
                                 <Col md={8}>
                                     <p>
-                                        <span className="glyphicon glyphicon-time"> </span>
-                                        {post.author} on {formatDate(post.timestamp)}
+                                        <span className="glyphicon glyphicon-time"> </span> 
+                                        { post.author } on {formatDate(post.timestamp)}
                                     </p>
                                 </Col>
                                 <Col md={4}>

@@ -27,15 +27,18 @@ class NewPost extends Component {
             });
     }
 
-   componentWillReceiveProps(nextProps) {
-        if (nextProps.post)
+    componentDidUpdate(prevProps) {
+        const { post, posts, post_id } = this.props
+        if ( post_id && posts.length > prevProps.posts.length) {
             this.setState({
-                title: nextProps.post.title,
-                body: nextProps.post.body,
-                author: nextProps.post.author,
-                category: nextProps.post.category,
+                title: post.title,
+                body: post.body,
+                author: post.author,
+                category: post.category,
                 desabilitado: true,
             });
+        }
+            
     }
  
     handleChangeFor = (propertyName) => (event) => {
@@ -128,6 +131,7 @@ function mapStateToProps({ posts, categories }, { match }) {
         categories,
         posts,
         post,
+        post_id,
     }
 }
 
