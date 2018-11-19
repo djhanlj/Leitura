@@ -7,7 +7,15 @@ A aplicação Leitura é uma aplicação web de conteúdo e comentários. os usu
 ### Pre-requisits
 * NPM
 
-### Running the App
+### Running the App Back-End
+* Clone ou faça download do repositório do servidor Back-End
+* Execute dentro do projeto `npm install` no terminal
+* Execute dentro do projeto `npm start`
+* Navegação `http://localhost:3001`
+
+
+
+### Running the App Front-End
 * Clone ou faça download do repositório
 * Execute dentro do projeto `npm install` no terminal
 * Execute dentro do projeto `npm start`
