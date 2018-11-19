@@ -1,6 +1,7 @@
 import { formatPost, formatComment, formatPostEdit } from '../utils/helpers'
 
-const api = "http://localhost:3001"
+//const api = "http://localhost:3001"
+const api = "https://leitura-server.herokuapp.com/"
 
 const headers = {
   'Content-Type': 'application/json',
