@@ -14,7 +14,7 @@ class Comment extends Component {
     }
     removeComment = (e, id) => {
         e.preventDefault()
-        
+
         const { dispatch, post_id } = this.props
         dispatch(handleRemoveComment(id, post_id))
     }

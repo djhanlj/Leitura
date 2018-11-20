@@ -9,15 +9,15 @@ import { Link, withRouter } from 'react-router-dom'
 class Posts extends Component {
 
   render() {
-    const { dispatch,arrayPosts } = this.props
+    const { arrayPosts } = this.props
 
     return (
       <Fragment>
         <hr />
-        <Order dispatch={dispatch} />
-        <hr />
-        {arrayPosts.map((post, index) => (
-          <Fragment key={index}>
+        <Order />
+        <hr/>
+        {arrayPosts.map((post) => (
+          <Fragment key={post.id}>
             <div className="post-preview">
               <h2 className="post-title">
                 <Link to={`/${post.category}/${post.id}`} >
@@ -36,7 +36,7 @@ class Posts extends Component {
                 <Col md={2}>
                   <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
                 </Col>
-                <Vote dispatch={dispatch} objeto={post} typeObject={'post'} />
+                <Vote objeto={post} typeObject={'post'} />
               </Row>
             </div>
             <hr />

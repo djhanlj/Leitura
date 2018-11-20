@@ -1,7 +1,7 @@
 import React from 'react'
 import { Jumbotron, Grid, Row } from 'react-bootstrap';
 
-const Page404 = () => {
+const NotFoundPage = () => {
     return (
         <Grid className="body">
             <Row className="show-grid">
@@ -13,4 +13,4 @@ const Page404 = () => {
         </Grid>
     )
 }
-export default Page404
+export default NotFoundPage;

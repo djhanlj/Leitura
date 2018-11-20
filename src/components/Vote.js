@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap';
 import { handleToggleVotePost } from '../actions/post'
 import { handleToggleVoteComment } from '../actions/comment'
@@ -41,4 +42,4 @@ class Vote extends Component {
         )
     }
 }
-export default Vote;
+export default connect()(Vote);

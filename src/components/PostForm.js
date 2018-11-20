@@ -5,7 +5,7 @@ import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, HelpBlock
 import { handleAddPost, handleEditPost } from '../actions/post'
 import MensagemAlert from './MensagemAlert'
 
-class NewPost extends Component {
+class PostForm extends Component {
     state = {
         title: '',
         body: '',
@@ -36,7 +36,7 @@ class NewPost extends Component {
                 author: post.author,
                 category: post.category,
                 desabilitado: true,
-                
+
             });
         }
     }
@@ -55,14 +55,14 @@ class NewPost extends Component {
             this.setState({ showAlert: true });
             return false;
         }
-         if (!post_id) {
-             dispatch(handleAddPost(category, author, body, title))
-             this.props.history.push(`/${category}`)
-         } else {
-             dispatch(handleEditPost(post_id, body, title))
-             this.props.history.push(`/post/${post_id}`)
-         } 
-         this.setState({ showAlert: false });
+        if (!post_id) {
+            dispatch(handleAddPost(category, author, body, title))
+            this.props.history.push(`/${category}`)
+        } else {
+            dispatch(handleEditPost(post_id, body, title))
+            this.props.history.push(`/post/${post_id}`)
+        }
+        this.setState({ showAlert: false });
     }
 
     render() {
@@ -71,10 +71,10 @@ class NewPost extends Component {
 
         return (
             <Grid className="body">
-                <MensagemAlert 
-                    showAlert={showAlert} 
-                    textMensagem="Todos os campos devem ser preenchidos!" 
-                    typeAlert ='danger'  />
+                <MensagemAlert
+                    showAlert={showAlert}
+                    textMensagem="Todos os campos devem ser preenchidos!"
+                    typeAlert='danger' />
 
                 <Row className="show-grid">
                     <Col lg={10} md={9}>
@@ -155,4 +155,4 @@ function FieldGroup({ id, label, help, ...props }) {
     );
 }
 
-export default withRouter(connect(mapStateToProps)(NewPost));
+export default withRouter(connect(mapStateToProps)(PostForm));

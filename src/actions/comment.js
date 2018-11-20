@@ -1,5 +1,5 @@
 import * as API from '../utils/LeituraAPI'
-import { addComentPost, reducerComentPost  } from './post'
+import { addComentPost, reducerComentPost } from './post'
 
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
@@ -22,10 +22,10 @@ export function addComment(comments) {
  * 
  * @param {*} comments 
  */
-export function removeComment({id, deleted}) {
+export function removeComment({ id, deleted }) {
     return {
         type: REMOVE_COMMENT,
-        id, 
+        id,
         deleted,
     }
 }
@@ -90,7 +90,7 @@ export function handleAddComment(author, body, post_id) {
             author, body, post_id
         }).then((comments) => {
             dispatch(addComment(comments))
-            dispatch(addComentPost(post_id)) 
+            dispatch(addComentPost(post_id))
         })
     }
 }
@@ -103,9 +103,9 @@ export function handleAddComment(author, body, post_id) {
 export function handleRemoveComment(id, post_id) {
     return (dispatch) => {
         return API.removeComment(id)
-        .then((comments) => {
-            dispatch(removeComment(comments))
-            dispatch(reducerComentPost(post_id)) 
-        })
+            .then((comments) => {
+                dispatch(removeComment(comments))
+                dispatch(reducerComentPost(post_id))
+            })
     }
 }

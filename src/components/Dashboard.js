@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import Home from './Home';
 import Navbar from './CustomNavBar';
 import PostDetail from './PostDetail';
-import NewPost from './NewPost';
-import Page404 from './Page404';
+import PostForm from './PostForm';
+import NotFoundPage from './NotFoundPage';
 
 class Dashboard extends Component {
   verificaCategories() {
@@ -23,10 +23,10 @@ class Dashboard extends Component {
               <Navbar categories={this.props.categories} />
               <Switch>
                 <Route exact path="/:category?" component={Home} />
-                <Route path={`/post/create`} component={NewPost} />
-                <Route path={`/post/edit/:post_id`} component={NewPost} />
+                <Route path={`/post/create`} component={PostForm} />
+                <Route path={`/post/edit/:post_id`} component={PostForm} />
                 <Route path={`/:category/:post_id`} component={PostDetail} />
-                <Route component={Page404} />
+                <Route component={NotFoundPage} />
               </Switch>
             </div>
             : null}

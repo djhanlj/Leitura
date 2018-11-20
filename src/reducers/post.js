@@ -3,6 +3,7 @@ import { RECEIVE_POSTS, UPDATE_POST, ADD_POST, ADD_COMMENT_POST, EDIT_POST, REMO
 
 export default function posts(state = [], action) {
     switch (action.type) {
+        
         case RECEIVE_POSTS:
             return action.posts.sort(sortBy('voteScore'))
 

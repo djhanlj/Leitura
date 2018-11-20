@@ -5,16 +5,25 @@ import Dashboard from './Dashboard'
 
 class App extends Component {
 
-  componentWillMount(){
-    this.props.dispatch(handleInitialData())
+  componentWillMount() {
+    const { loadData } = this.props
+    loadData()
   }
 
   render() {
     return (
-        <div>
-          <Dashboard />
-        </div>
+      <div>
+        <Dashboard />
+      </div>
     );
   }
 }
-export default connect()(App);
+
+function mapDispatchToProps(dispatch) {
+  return {
+    loadData: () => dispatch(handleInitialData()),
+  }
+
+}
+
+export default connect(null, mapDispatchToProps)(App);

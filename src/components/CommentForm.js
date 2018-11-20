@@ -4,7 +4,7 @@ import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, HelpBlock
 import { handleAddComment } from '../actions/comment'
 import MensagemAlert from './MensagemAlert'
 
-class NewComment extends Component {
+class CommentForm extends Component {
     state = {
         body: '',
         author: '',
@@ -38,10 +38,10 @@ class NewComment extends Component {
 
         return (
             <Grid className="body">
-                <MensagemAlert 
-                        showAlert={showAlert} 
-                        textMensagem="Todos os campos do formulário de comentários devem ser preenchidos!" 
-                        typeAlert ='danger' />
+                <MensagemAlert
+                    showAlert={showAlert}
+                    textMensagem="Todos os campos do formulário de comentários devem ser preenchidos!"
+                    typeAlert='danger' />
 
                 <Row className="show-grid">
                     <h4>Novo Comentário:</h4>
@@ -83,4 +83,4 @@ function FieldGroup({ id, label, help, ...props }) {
     );
 }
 
-export default connect()(NewComment);
+export default connect()(CommentForm);

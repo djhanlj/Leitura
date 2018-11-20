@@ -35,10 +35,10 @@ export function editPost(posts) {
  * 
  * @param {*} param0 
  */
-export function removePost({id, deleted}) {
+export function removePost({ id, deleted }) {
     return {
         type: REMOVE_POST,
-        id, 
+        id,
         deleted,
     }
 }
@@ -80,7 +80,7 @@ export function receivePosts(posts) {
  * 
  * @param {*} param0 
  */
- 
+
 export function handleOrderBy(typOrder) {
     return {
         type: ORDER_BY_POST,
