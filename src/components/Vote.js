@@ -6,22 +6,22 @@ import { handleToggleVoteComment } from '../actions/comment'
 
 class Vote extends Component {
 
-    handleVote = (e, objeto, typeObject, typeVote) => {
+    setVote = (e, objeto, typeObject, typeVote) => {
         e.preventDefault()
-        const { dispatch } = this.props
+        const { setVotePost, setVoteComment } = this.props
 
         if (typeObject === 'post') {
-            dispatch(handleToggleVotePost({
+            setVotePost({
                 id: objeto.id,
                 voto: typeVote,
                 voteScore: (typeVote === 'upVote') ? objeto.voteScore + 1 : objeto.voteScore - 1
-            }))
+            })
         } else {
-            dispatch(handleToggleVoteComment({
+            setVoteComment({
                 id: objeto.id,
                 voto: typeVote,
                 voteScore: (typeVote === 'upVote') ? objeto.voteScore + 1 : objeto.voteScore - 1
-            }))
+            })
         }
 
     }
@@ -31,10 +31,10 @@ class Vote extends Component {
         return (
             <Col md={5}>
                 <ButtonToolbar>
-                    <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto, typeObject, 'upVote')}>
+                    <Button bsSize="small" onClick={(e) => this.setVote(e, objeto, typeObject, 'upVote')}>
                         <Glyphicon glyph="thumbs-up" />
                     </Button>
-                    <Button bsSize="small" onClick={(e) => this.handleVote(e, objeto, typeObject, 'downVote')}>
+                    <Button bsSize="small" onClick={(e) => this.setVote(e, objeto, typeObject, 'downVote')}>
                         <Glyphicon glyph="thumbs-down" />
                     </Button>
                 </ButtonToolbar>
@@ -42,4 +42,11 @@ class Vote extends Component {
         )
     }
 }
-export default connect()(Vote);
+
+function mapDispatchToProps(dispatch) {
+    return {
+        setVotePost: ({ id, voto, voteScore }) => dispatch(handleToggleVotePost({ id, voto, voteScore })),
+        setVoteComment: ({ id, voto, voteScore }) => dispatch(handleToggleVoteComment({ id, voto, voteScore }))
+    }
+}
+export default connect(null, mapDispatchToProps)(Vote);

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, HelpBlock } from 'react-bootstrap';
+import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { handleAddPost, handleEditPost } from '../actions/post'
 import MensagemAlert from './MensagemAlert'
+import FieldGroup from './FieldGroup'
 
 class PostForm extends Component {
     state = {
@@ -15,30 +16,27 @@ class PostForm extends Component {
         showAlert: false,
     }
 
+    updateAndSave = post => {
+        this.setState({
+            title: post.title,
+            body: post.body,
+            author: post.author,
+            category: post.category,
+            desabilitado: true,
+        });
+    }
+
     componentDidMount() {
         const { post } = this.props
         if (post)
-            this.setState({
-                title: post.title,
-                body: post.body,
-                author: post.author,
-                category: post.category,
-                desabilitado: true,
-            });
+            this.updateAndSave(post)
     }
 
     componentDidUpdate(prevProps) {
         const { post, posts, post_id } = this.props
-        if (post_id && posts.length > prevProps.posts.length) {
-            this.setState({
-                title: post.title,
-                body: post.body,
-                author: post.author,
-                category: post.category,
-                desabilitado: true,
+        if (post_id && posts.length > prevProps.posts.length)
+            this.updateAndSave(post)
 
-            });
-        }
     }
 
     handleChangeFor = (propertyName) => (event) => {
@@ -48,7 +46,7 @@ class PostForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const { category, author, body, title } = this.state
-        const { dispatch } = this.props
+        const { addPost, editPost } = this.props
         const { post_id } = this.props.match.params
 
         if (author === '' || body === '' || title === '') {
@@ -56,12 +54,14 @@ class PostForm extends Component {
             return false;
         }
         if (!post_id) {
-            dispatch(handleAddPost(category, author, body, title))
+            addPost(category, author, body, title)
             this.props.history.push(`/${category}`)
         } else {
-            dispatch(handleEditPost(post_id, body, title))
+            editPost(post_id, body, title)
             this.props.history.push(`/post/${post_id}`)
         }
+
+
         this.setState({ showAlert: false });
     }
 
@@ -145,14 +145,11 @@ function mapStateToProps({ posts, categories }, { match }) {
     }
 }
 
-function FieldGroup({ id, label, help, ...props }) {
-    return (
-        <FormGroup controlId={id}>
-            <ControlLabel>{label}</ControlLabel>
-            <FormControl {...props} />
-            {help && <HelpBlock>{help}</HelpBlock>}
-        </FormGroup>
-    );
+function mapDispatchToProps(dispatch) {
+    return {
+        addPost: (category, author, body, title) => dispatch(handleAddPost(category, author, body, title)),
+        editPost: (post_id, body, title) => dispatch(handleEditPost(post_id, body, title)),
+    }
 }
 
-export default withRouter(connect(mapStateToProps)(PostForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostForm));

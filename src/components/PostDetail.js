@@ -3,20 +3,17 @@ import { connect } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
 import { Grid, Row, Col, Badge, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
-
 import Comment from './Comment'
 import Vote from './Vote'
 import CommentForm from './CommentForm'
-
 import { handleRemovePost } from '../actions/post'
 
 class PostDetail extends Component {
 
     removePost = (e, id) => {
-        const { dispatch } = this.props
         e.preventDefault()
-
-        dispatch(handleRemovePost(id))
+        const { removePost } = this.props
+        removePost(id)
         this.props.history.push(`/`)
     }
 
@@ -88,7 +85,7 @@ function mapStateToProps({ posts }, { match }) {
     const { category, post_id } = match.params
     const post = posts.find(post => post.id === post_id)
     console.log(post)
-    if (post === 'undefined') {
+    if (!post) {
         return <Redirect to='/teste/teste/teste/teste/teste' />
     }
 
@@ -99,4 +96,11 @@ function mapStateToProps({ posts }, { match }) {
     }
 }
 
-export default connect(mapStateToProps)(PostDetail);
+function mapDispatchToProps(dispatch) {
+    return {
+        removePost: (id) => dispatch(handleRemovePost(id)),
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

@@ -9,20 +9,18 @@ import { handleRemoveComment } from '../actions/comment'
 class Comment extends Component {
 
     componentDidMount() {
-        const { dispatch, post_id } = this.props
-        dispatch(handleComments(post_id))
+        const { getAllComment, post_id } = this.props
+        getAllComment(post_id)
     }
+
     removeComment = (e, id) => {
         e.preventDefault()
-
-        const { dispatch, post_id } = this.props
-        dispatch(handleRemoveComment(id, post_id))
+        const { removeComment, post_id } = this.props
+        removeComment(id, post_id)
     }
 
-
-
     render() {
-        const { comments, dispatch } = this.props
+        const { comments } = this.props
         return (
             <Col md={12}>
                 <h4>Comentários ({comments.length}) </h4>
@@ -51,7 +49,7 @@ class Comment extends Component {
                                     <Col md={2}>
                                         <p className="post-meta">Votos <Badge>{comment.voteScore}</Badge></p>
                                     </Col>
-                                    <Vote dispatch={dispatch} objeto={comment} typeObject={'comment'} />
+                                    <Vote objeto={comment} typeObject={'comment'} />
                                 </Row>
 
                             </div>
@@ -71,5 +69,13 @@ function mapStateToProps({ comments }, { post_id }) {
     }
 }
 
-export default connect(mapStateToProps)(Comment);
+function mapDispatchToProps(dispatch) {
+    return {
+        getAllComment: (post_id) => dispatch(handleComments(post_id)),
+        removeComment: ( id, post_id) => dispatch(handleRemoveComment(id, post_id))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comment);
 

@@ -14,7 +14,7 @@ export function uuidv4() {
   )
 }
 
-export function formatPost( category, author, body, title ) {
+export function formatPost(category, author, body, title) {
   return {
     id: uuidv4(),
     category: category,
@@ -25,7 +25,7 @@ export function formatPost( category, author, body, title ) {
   }
 }
 
-export function formatPostEdit( body, title ) {
+export function formatPostEdit(body, title) {
   return {
     body: body,
     title: title

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button, HelpBlock } from 'react-bootstrap';
+import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { handleAddComment } from '../actions/comment'
 import MensagemAlert from './MensagemAlert'
+import FieldGroup from './FieldGroup'
 
 class CommentForm extends Component {
     state = {
@@ -18,14 +19,14 @@ class CommentForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const { author, body } = this.state
-        const { dispatch, post_id } = this.props
+        const { addComment, post_id } = this.props
 
         if (author === '' || body === '') {
             this.setState({ showAlert: true });
             return false;
         }
 
-        dispatch(handleAddComment(author, body, post_id))
+        addComment(author, body, post_id)
 
         this.setState(() => ({
             body: '',
@@ -73,14 +74,10 @@ class CommentForm extends Component {
     }
 }
 
-function FieldGroup({ id, label, help, ...props }) {
-    return (
-        <FormGroup controlId={id}>
-            <ControlLabel>{label}</ControlLabel>
-            <FormControl {...props} />
-            {help && <HelpBlock>{help}</HelpBlock>}
-        </FormGroup>
-    );
+function mapDispatchToProps(dispatch) {
+    return {
+        addComment: (author, body, post_id) => dispatch(handleAddComment(author, body, post_id)),
+    }
 }
 
-export default connect()(CommentForm);
+export default connect(null, mapDispatchToProps)(CommentForm);

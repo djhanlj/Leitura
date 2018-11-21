@@ -18,4 +18,4 @@ const MensagemAlert = ({ showAlert, textMensagem, typeAlert = 'success' }) => {
 
     )
 }
-export default MensagemAlert
+export default MensagemAlert;

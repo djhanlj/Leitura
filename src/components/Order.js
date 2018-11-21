@@ -8,10 +8,13 @@ class Order extends Component {
     state = {
         selectedOrder: 'asc'
     }
-    orderBy = (e, typeOrder) => {
+
+    setOrderBy = (e, typeOrder) => {
         e.preventDefault()
-        const { dispatch } = this.props
-        dispatch(handleOrderBy(typeOrder))
+        
+        const { orderBy } = this.props
+        orderBy(typeOrder)
+
         this.setState({
             selectedOrder: typeOrder
 
@@ -28,10 +31,10 @@ class Order extends Component {
                 </Col>
                 <Col md={5}>
                     <ButtonGroup>
-                        <Button bsStyle={selectedOrder === 'asc' ? "info" : null} onClick={(e) => this.orderBy(e, "asc")} checked={true} >
+                        <Button bsStyle={selectedOrder === 'asc' ? "info" : null} onClick={(e) => this.setOrderBy(e, "asc")} checked={true} >
                             ASC
                         </Button>
-                        <Button bsStyle={selectedOrder === 'desc' ? "info" : null} onClick={(e) => this.orderBy(e, "desc")}>
+                        <Button bsStyle={selectedOrder === 'desc' ? "info" : null} onClick={(e) => this.setOrderBy(e, "desc")}>
                             DESC
                         </Button>
                     </ButtonGroup>
@@ -40,4 +43,10 @@ class Order extends Component {
         )
     }
 }
-export default connect()(Order);
+
+function mapDispatchToProps(dispatch) {
+    return {
+        orderBy: (typeOrder) => dispatch(handleOrderBy(typeOrder)),
+    }
+}
+export default connect(null, mapDispatchToProps)(Order);
