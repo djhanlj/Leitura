@@ -4,6 +4,7 @@ import { addComentPost, reducerComentPost } from './post'
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const ADD_COMMENT = 'ADD_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 
 
@@ -15,6 +16,17 @@ export function addComment(comments) {
     return {
         type: ADD_COMMENT,
         comments,
+    }
+}
+
+/**
+ * 
+ * @param {*} comment
+ */
+export function editComment(comment) {
+    return {
+        type: EDIT_COMMENT,
+        comment,
     }
 }
 
@@ -107,5 +119,18 @@ export function handleRemoveComment(id, post_id) {
                 dispatch(removeComment(comments))
                 dispatch(reducerComentPost(post_id))
             })
+    }
+}
+
+/**
+ * 
+ * @param {*} id 
+ * @param {*} body 
+ */
+export function handleEditComment(id, body) {
+    return (dispatch) => {
+        return API.editComment(
+            id, body
+        ).then((comment) => dispatch(editComment(comment)))
     }
 }

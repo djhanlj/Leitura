@@ -49,4 +49,5 @@ function mapDispatchToProps(dispatch) {
         setVoteComment: ({ id, voto, voteScore }) => dispatch(handleToggleVoteComment({ id, voto, voteScore }))
     }
 }
+
 export default connect(null, mapDispatchToProps)(Vote);

@@ -1,4 +1,4 @@
-import { formatPost, formatComment, formatPostEdit } from '../utils/helpers'
+import { formatPost, formatComment, formatPostEdit, formatCommentEdit } from '../utils/helpers'
 
 const api = "http://localhost:3001"
 //const api = "https://leitura-server.herokuapp.com"
@@ -83,6 +83,22 @@ export function editPost(post_id, body, title) {
   }).then(res => res.json())
     .then(data => data)
 }
+
+
+/**
+ * 
+ * @param {*} comment_id 
+ * @param {*} body 
+ */
+export function editComment(comment_id, body) {
+  return fetch(`${api}/comments/${comment_id}`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify(formatCommentEdit(body))
+  }).then(res => res.json())
+    .then(data => data)
+}
+
 
 /**
  * 

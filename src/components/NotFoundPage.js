@@ -6,8 +6,8 @@ const NotFoundPage = () => {
         <Grid className="body">
             <Row className="show-grid">
                 <Jumbotron>
-                    <h1>Ola, algo está errado!</h1>
-                    <p>Volte para tela inicial e tente novamente.</p>
+                    <h2>Ops, Post não encontrado!</h2>
+                    <p>O post pode ter sido deletado</p>
                 </Jumbotron>
             </Row>
         </Grid>

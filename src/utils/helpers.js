@@ -42,3 +42,11 @@ export function formatComment({ author, body, post_id }) {
     timestamp: Date.now()
   }
 }
+
+
+export function formatCommentEdit(body) {
+  return {
+    body: body,
+    timestamp: Date.now()
+  }
+}

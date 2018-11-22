@@ -1,5 +1,6 @@
 import sortBy from 'sort-by'
-import { RECEIVE_POSTS, UPDATE_POST, ADD_POST, ADD_COMMENT_POST, EDIT_POST, REMOVE_POST, REDUCER_COMMENT_POST, ORDER_BY_POST } from '../actions/post'
+import { RECEIVE_POSTS, UPDATE_POST, ADD_POST, ADD_COMMENT_POST, 
+    EDIT_POST, REMOVE_POST, REDUCER_COMMENT_POST, ORDER_BY_POST } from '../actions/post'
 
 export default function posts(state = [], action) {
     switch (action.type) {
