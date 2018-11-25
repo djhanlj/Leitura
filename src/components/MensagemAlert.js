@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Row, Alert, Col } from 'react-bootstrap';
+import { Row, Alert, Col } from 'react-bootstrap'
 
 const MensagemAlert = ({ showAlert, textMensagem, typeAlert = 'success' }) => {
     return (

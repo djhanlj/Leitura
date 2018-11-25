@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { handleInitialData } from '../actions'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
+
 
 class App extends Component {
 

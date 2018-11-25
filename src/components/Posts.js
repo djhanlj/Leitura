@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Row, Col, Badge, Glyphicon } from 'react-bootstrap';
+import { Row, Col, Badge, Glyphicon } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import Vote from './Vote'
 import Order from './Order'

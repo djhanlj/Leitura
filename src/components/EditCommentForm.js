@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { ButtonToolbar, Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import { ButtonToolbar, Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
 
 class EditCommentForm extends Component {
     state = {
@@ -10,7 +10,7 @@ class EditCommentForm extends Component {
     componentDidMount() {
         const { comment } = this.props
         if (comment)
-        this.setState({ body: comment.body });
+            this.setState({ body: comment.body });
     }
 
     handleChangeFor = (propertyName) => (event) => {
@@ -54,7 +54,6 @@ function mapStateToProps({ comments }, { comment_id, doNotEdit, editFormSubmit }
         editFormSubmit
     }
 }
-
 
 
 export default connect(mapStateToProps)(EditCommentForm);

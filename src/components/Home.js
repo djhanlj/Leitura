@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Button } from 'react-bootstrap';
+import { Grid, Row, Col, Button } from 'react-bootstrap'
 import Posts from './Posts'
 import { Link } from 'react-router-dom'
 import { toUpperCaseText } from '../utils/helpers'

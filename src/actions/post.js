@@ -1,4 +1,5 @@
 import * as API from '../utils/LeituraAPI'
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS"
 export const UPDATE_POST = "UPDATE_POST"
@@ -119,10 +120,13 @@ export function handleToggleVotePost(post) {
  */
 export function handleAddPost(category, author, body, title) {
     return (dispatch) => {
+        dispatch(showLoading())
         return API.savePost(
             category, author, body, title
-        )
-            .then((posts) => dispatch(addPost(posts)))
+        ).then((posts) => {
+         dispatch(addPost(posts))
+         dispatch(hideLoading())
+        })
     }
 }
 
@@ -134,9 +138,13 @@ export function handleAddPost(category, author, body, title) {
  */
 export function handleEditPost(id, body, title) {
     return (dispatch) => {
+        dispatch(showLoading())
         return API.editPost(
             id, body, title
-        ).then((post) => dispatch(editPost(post)))
+        ).then((post) => {
+            dispatch(editPost(post))
+            dispatch(hideLoading())
+        })
     }
 }
 

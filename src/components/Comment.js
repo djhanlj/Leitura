@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Row, Col, Badge, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
+import { Row, Col, Badge, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap'
 import { formatDate } from '../utils/helpers'
 import Vote from './Vote'
 import { handleRemoveComment, handleEditComment, handleComments } from '../actions/comment'

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
 import { handleAddComment } from '../actions/comment'
 import MensagemAlert from './MensagemAlert'
 import FieldGroup from './FieldGroup'

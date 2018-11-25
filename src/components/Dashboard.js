@@ -1,28 +1,27 @@
-import React, { Fragment } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { Fragment } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Home from './Home';
-import Navbar from './CustomNavBar';
-import PostDetail from './PostDetail';
-import PostForm from './PostForm';
-import NotFoundPage from './NotFoundPage';
-import If from './If';
+import Home from './Home'
+import Navbar from './CustomNavBar'
+import PostDetail from './PostDetail'
+import PostForm from './PostForm'
+import NotFoundPage from './NotFoundPage'
+import LoadingBar from 'react-redux-loading'
 
-const Dashboard = ({ posts, categories }) => {
+const Dashboard = ({ categories, loading }) => {
 
   return (
     <Router>
       <Fragment>
-        <If test={posts.length > 0}>
-          <Navbar categories={categories} />
-          <Switch>
-            <Route exact path="/:category?" component={Home} />
-            <Route path={`/post/create`} component={PostForm} />
-            <Route path={`/post/edit/:post_id`} component={PostForm} />
-            <Route path={`/:category/:post_id`} component={PostDetail} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </If>
+        <LoadingBar />
+        <Navbar categories={categories} />
+        <Switch>
+          <Route exact path="/:category?" component={Home} />
+          <Route path={`/post/create`} component={PostForm} />
+          <Route path={`/post/edit/:post_id`} component={PostForm} />
+          <Route path={`/:category/:post_id`} component={PostDetail} />
+          <Route component={NotFoundPage} />
+        </Switch>
       </Fragment>
     </Router>
   );

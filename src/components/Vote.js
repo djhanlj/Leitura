@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap';
+import { Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap'
 import { handleToggleVotePost } from '../actions/post'
 import { handleToggleVoteComment } from '../actions/comment'
 

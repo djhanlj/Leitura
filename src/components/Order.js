@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
+import { Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import { handleOrderBy } from '../actions/post'
 
 class Order extends Component {

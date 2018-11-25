@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
-import { Grid, Row, Col, Badge, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap';
+import { Grid, Row, Col, Badge, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap'
 import Comment from './Comment'
 import Vote from './Vote'
 import CommentForm from './CommentForm'
 import { handleRemovePost } from '../actions/post'
-import NotFoundPage from './NotFoundPage';
+import NotFoundPage from './NotFoundPage'
 
 class PostDetail extends Component {
 

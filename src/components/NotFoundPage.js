@@ -1,5 +1,5 @@
 import React from 'react'
-import { Jumbotron, Grid, Row } from 'react-bootstrap';
+import { Jumbotron, Grid, Row } from 'react-bootstrap'
 
 const NotFoundPage = () => {
     return (
