@@ -78,7 +78,7 @@ class PostForm extends Component {
 
                 <Row className="show-grid">
                     <Col lg={10} md={9}>
-                        {!desabilitado ? <h1>Criar Post </h1> : <h1>Editar Post</h1>}
+                        {!desabilitado ? <h1>Novo Post </h1> : <h1>Editar Post</h1>}
                     </Col>
                 </Row>
 

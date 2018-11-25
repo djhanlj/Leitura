@@ -69,10 +69,10 @@ class Comment extends Component {
                                         <Col md={4}>
                                             <ButtonToolbar>
                                                 <Button bsSize="small" title="Editar" onClick={(e) => this.editFormComment(e, comment.id)} >
-                                                    <Glyphicon glyph="edit" />
+                                                    Editar <Glyphicon glyph="edit" />
                                                 </Button>
                                                 <Button bsSize="small" title="Remover" onClick={(e) => this.removeComment(e, comment.id)} >
-                                                    <Glyphicon glyph="remove" />
+                                                    Remover <Glyphicon glyph="remove" />
                                                 </Button>
                                             </ButtonToolbar>
                                         </Col>

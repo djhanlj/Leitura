@@ -1,14 +1,23 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Button } from 'react-bootstrap'
+import { Grid, Row, Col, Button, Panel, FormControl, Glyphicon } from 'react-bootstrap'
 import Posts from './Posts'
 import { Link } from 'react-router-dom'
 import { toUpperCaseText } from '../utils/helpers'
-import Order from './Order'
+import OrderByPost from './OrderByPost'
 
 class Home extends Component {
 
+  state = {
+    query: '',
+  }
+
+  updateQuery = (queryChange) => {
+    this.setState({ query: queryChange })
+  }
+
   render() {
     const { category } = this.props.match.params
+    const { query } = this.state
 
     return (
       <Grid className="body">
@@ -16,27 +25,46 @@ class Home extends Component {
           <Col lg={10} md={9}>
             <h1>Post {toUpperCaseText(category)} </h1>
           </Col>
-          <Col lg={2} md={2}>
-            <h3 className="post-title">
-              <Link to={`/post/create`} >
-                <Button bsStyle="primary">
-                  Criar Post
-                </Button>
-              </Link>
-            </h3>
-          </Col>
         </Row>
         <Row className="show-grid">
           <Col lg={7} md={7}>
-            <Posts category={category} />
+            <Posts category={category} query={query} />
           </Col>
           <Col lg={5} md={5}>
-            <Order />
+            <Panel>
+              <Panel.Body>
+                <Row >
+                  <Col md={12}>
+                    <h4><Glyphicon glyph="search" /> Buscar Posts </h4>
+                    <FormControl
+                      type="text"
+                      placeholder="Digite o nome do post"
+                      value={query}
+                      onChange={(event) => this.updateQuery(event.target.value)} />
+                  </Col>
+                </Row>
+                <br />
+                <Row className="show-grid">
+                  <OrderByPost />
+                </Row>
+                <br />
+                <Row>
+                  <Link to={`/post/create`} >
+                    <div className='botao'>
+                      <Button bsStyle="primary" block>
+                        Novo Post
+                       </Button>
+                    </div>
+                  </Link>
+                </Row>
+              </Panel.Body>
+            </Panel>
           </Col>
         </Row>
       </Grid>
     )
   }
 }
+
 
 export default Home;

@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 import Vote from './Vote'
 import { formatDate } from '../utils/helpers'
 import { Link, withRouter } from 'react-router-dom'
+import escapeRegExp from 'escape-string-regexp'
 
-const Posts = ({ arrayPosts }) => {
+
+const Posts = ({ arrayPostsQuery }) => {
   return (
     <Fragment>
-      {arrayPosts.map((post) => (
+      {arrayPostsQuery.map((post) => (
         <Fragment key={post.id}>
           <div className="post-preview">
             <h2 className="post-title">
@@ -39,12 +41,24 @@ const Posts = ({ arrayPosts }) => {
 }
 
 
-function mapStateToProps({ posts }, { category }) {
+function mapStateToProps({ posts }, { category, query }) {
   const arrayPosts = category ? posts.filter(post => post.category === category) : posts
+  console.log(query)
+
+  /**
+   * @param arrayPostsQuery Terá o filtro de posts
+   */
+  let arrayPostsQuery
+  if (query.length >= 3) {
+    const match = new RegExp(escapeRegExp(query), 'i')
+    arrayPostsQuery = arrayPosts.filter((post) => match.test(post.title))
+  } else {
+    arrayPostsQuery = arrayPosts
+  }
   return {
     posts,
     category,
-    arrayPosts,
+    arrayPostsQuery,
   }
 }
 

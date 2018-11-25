@@ -48,11 +48,11 @@ class PostDetail extends Component {
                                     <ButtonToolbar>
                                         <Link to={`/post/edit/${post.id}`} >
                                             <Button bsSize="small" bsStyle="primary" title="Editar">
-                                                <Glyphicon glyph="edit" />
+                                                Editar <Glyphicon glyph="edit" />
                                             </Button>
                                         </Link>
                                         <Button bsSize="small" bsStyle="danger" title="Remover" onClick={(e) => this.removePost(e, post.id)} >
-                                            <Glyphicon glyph="remove" />
+                                            Remover <Glyphicon glyph="remove" />
                                         </Button>
                                     </ButtonToolbar>
                                 </Col>

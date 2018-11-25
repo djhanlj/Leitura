@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap3": "^3.3.5",
+    "escape-string-regexp": "^1.0.5",
     "express": "^4.16.4",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",

@@ -89,6 +89,10 @@ export function handleOrderBy(order) {
     }
 }
 
+/**
+ * 
+ * @param {*} param0 
+ */
 export function toggleVotePost({ id, voteScore }) {
     return {
         type: UPDATE_POST,
@@ -96,6 +100,16 @@ export function toggleVotePost({ id, voteScore }) {
         voteScore
     }
 }
+
+export function handleInitialPost() {
+    return (dispatch) => {
+      return API.getPosts()
+        .then(( posts ) => {
+          dispatch(receivePosts(posts))
+        })
+    }
+  }
+  
 
 /**
  * 
@@ -124,8 +138,8 @@ export function handleAddPost(category, author, body, title) {
         return API.savePost(
             category, author, body, title
         ).then((posts) => {
-         dispatch(addPost(posts))
-         dispatch(hideLoading())
+            dispatch(addPost(posts))
+            dispatch(hideLoading())
         })
     }
 }
