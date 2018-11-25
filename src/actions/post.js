@@ -82,10 +82,10 @@ export function receivePosts(posts) {
  * @param {*} param0 
  */
 
-export function handleOrderBy(typOrder) {
+export function handleOrderBy(order) {
     return {
         type: ORDER_BY_POST,
-        typOrder,
+        order
     }
 }
 

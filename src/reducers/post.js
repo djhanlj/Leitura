@@ -29,7 +29,10 @@ export default function posts(state = [], action) {
             return state.map(post => post.id === action.id ? { ...post, commentCount: post.commentCount - 1 } : post)
 
         case ORDER_BY_POST:
-            return state.slice().sort(action.typOrder === 'asc' ? sortBy('voteScore') : sortBy('-voteScore'))
+            return action.order.selectedTypeOrder === 'vote' 
+            ? state.slice().sort(action.order.selectedOrder === 'asc' ? sortBy('voteScore') : sortBy('-voteScore'))
+            : state.slice().sort(action.order.selectedOrder === 'asc' ? sortBy('timestamp') : sortBy('-timestamp'))
+        
 
         default:
             return state

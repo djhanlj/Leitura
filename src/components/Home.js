@@ -3,6 +3,7 @@ import { Grid, Row, Col, Button } from 'react-bootstrap'
 import Posts from './Posts'
 import { Link } from 'react-router-dom'
 import { toUpperCaseText } from '../utils/helpers'
+import Order from './Order'
 
 class Home extends Component {
 
@@ -26,8 +27,11 @@ class Home extends Component {
           </Col>
         </Row>
         <Row className="show-grid">
-          <Col lg={10} md={12}>
+          <Col lg={7} md={7}>
             <Posts category={category} />
+          </Col>
+          <Col lg={5} md={5}>
+            <Order />
           </Col>
         </Row>
       </Grid>

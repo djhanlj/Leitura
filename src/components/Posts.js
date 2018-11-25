@@ -2,16 +2,12 @@ import React, { Fragment } from 'react'
 import { Row, Col, Badge, Glyphicon } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import Vote from './Vote'
-import Order from './Order'
 import { formatDate } from '../utils/helpers'
 import { Link, withRouter } from 'react-router-dom'
 
 const Posts = ({ arrayPosts }) => {
   return (
     <Fragment>
-      <hr />
-      <Order />
-      <hr />
       {arrayPosts.map((post) => (
         <Fragment key={post.id}>
           <div className="post-preview">
