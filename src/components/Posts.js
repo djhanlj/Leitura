@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react'
 import { Row, Col, Badge, Glyphicon } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import Vote from './Vote'
+import Votes from './Votes'
 import { formatDate } from '../utils/helpers'
 import { Link, withRouter } from 'react-router-dom'
 import escapeRegExp from 'escape-string-regexp'
-
 
 const Posts = ({ arrayPostsQuery }) => {
   return (
@@ -30,7 +29,7 @@ const Posts = ({ arrayPostsQuery }) => {
               <Col md={2}>
                 <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
               </Col>
-              <Vote objeto={post} typeObject={'post'} />
+              <Votes objeto={post} typeObject={'post'} />
             </Row>
           </div>
           <hr />
@@ -43,10 +42,9 @@ const Posts = ({ arrayPostsQuery }) => {
 
 function mapStateToProps({ posts }, { category, query }) {
   const arrayPosts = category ? posts.filter(post => post.category === category) : posts
-  console.log(query)
 
   /**
-   * @param arrayPostsQuery Terá o filtro de posts
+   * @description condicional utilizado no filtro de Posts
    */
   let arrayPostsQuery
   if (query.length >= 3) {
@@ -55,12 +53,12 @@ function mapStateToProps({ posts }, { category, query }) {
   } else {
     arrayPostsQuery = arrayPosts
   }
+
   return {
     posts,
     category,
     arrayPostsQuery,
   }
 }
-
 
 export default withRouter(connect(mapStateToProps)(Posts));

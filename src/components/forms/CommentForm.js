@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
-import { handleAddComment } from '../actions/comment'
+import { handleAddComment } from '../../actions/comment'
 import MensagemAlert from './MensagemAlert'
 import FieldGroup from './FieldGroup'
 
 class CommentForm extends Component {
+    
     state = {
         body: '',
         author: '',
@@ -14,26 +15,24 @@ class CommentForm extends Component {
 
     handleChangeFor = (propertyName) => (event) => {
         this.setState({ [propertyName]: event.target.value });
-    }
+    };
 
     handleSubmit = (e) => {
         e.preventDefault()
         const { author, body } = this.state
         const { addComment, post_id } = this.props
-
         if (author === '' || body === '') {
             this.setState({ showAlert: true });
             return false;
         }
-
         addComment(author, body, post_id)
-
         this.setState(() => ({
             body: '',
             author: '',
             showAlert: false,
         }))
-    }
+    };
+
     render() {
         const { author, body, showAlert } = this.state
 

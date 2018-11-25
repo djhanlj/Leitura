@@ -4,7 +4,7 @@ import { Col, Button, Glyphicon, ButtonToolbar } from 'react-bootstrap'
 import { handleToggleVotePost } from '../actions/post'
 import { handleToggleVoteComment } from '../actions/comment'
 
-class Vote extends Component {
+class Votes extends Component {
 
     setVote = (e, objeto, typeObject, typeVote) => {
         e.preventDefault()
@@ -23,8 +23,7 @@ class Vote extends Component {
                 voteScore: (typeVote === 'upVote') ? objeto.voteScore + 1 : objeto.voteScore - 1
             })
         }
-
-    }
+    };
 
     render() {
         const { objeto, typeObject } = this.props
@@ -50,4 +49,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Vote);
+export default connect(null, mapDispatchToProps)(Votes);

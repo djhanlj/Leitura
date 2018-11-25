@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { ButtonToolbar, Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
 
 class EditCommentForm extends Component {
+
     state = {
         body: '',
     }
@@ -15,8 +16,7 @@ class EditCommentForm extends Component {
 
     handleChangeFor = (propertyName) => (event) => {
         this.setState({ [propertyName]: event.target.value });
-    }
-
+    };
 
     render() {
         const { body } = this.state

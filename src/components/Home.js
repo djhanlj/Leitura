@@ -3,7 +3,7 @@ import { Grid, Row, Col, Button, Panel, FormControl, Glyphicon } from 'react-boo
 import Posts from './Posts'
 import { Link } from 'react-router-dom'
 import { toUpperCaseText } from '../utils/helpers'
-import OrderByPost from './OrderByPost'
+import PostsOrder from './PostsOrder'
 
 class Home extends Component {
 
@@ -11,9 +11,9 @@ class Home extends Component {
     query: '',
   }
 
-  updateQuery = (queryChange) => {
-    this.setState({ query: queryChange })
-  }
+  updateQuery = (query) => {
+    this.setState({ query })
+  };
 
   render() {
     const { category } = this.props.match.params
@@ -45,7 +45,7 @@ class Home extends Component {
                 </Row>
                 <br />
                 <Row className="show-grid">
-                  <OrderByPost />
+                  <PostsOrder />
                 </Row>
                 <br />
                 <Row>

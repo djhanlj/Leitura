@@ -3,11 +3,8 @@ import { connect } from 'react-redux'
 import { Col, Button, ButtonGroup, FormControl, Glyphicon } from 'react-bootstrap'
 import { handleOrderBy } from '../actions/post'
 
-class OrderByPost extends Component {
+class PostsOrder extends Component {
 
-    /**
-     * vote, date
-     */
     state = {
         selectedOrder: 'asc',
         selectedTypeOrder: 'vote'
@@ -16,38 +13,32 @@ class OrderByPost extends Component {
     setOrderBy = (e, selectedTypeOrder, selectedOrder) => {
         e.preventDefault()
         const { orderBy } = this.props
-
         orderBy({ selectedOrder, selectedTypeOrder })
-
         this.setState({
             selectedOrder,
             selectedTypeOrder
         })
-
-    }
+    };
 
     handleChangeFor = (e) => {
         e.preventDefault()
         const { selectedOrder } = this.state
         const selectedTypeOrder = e.target.value
         this.setOrderBy(e, selectedTypeOrder, selectedOrder)
-    }
+    };
 
     handleClickButton = (e, selectedOrder) => {
         e.preventDefault()
         const { selectedTypeOrder } = this.state
         this.setOrderBy(e, selectedTypeOrder, selectedOrder)
-    }
-
+    };
 
     render() {
-
         const typFilters = [
             { value: 'vote', label: 'Vote' },
             { value: 'date', label: 'Date' },
         ];
         const { selectedOrder, selectedTypeOrder } = this.state
-
 
         return (
             <Fragment>
@@ -83,4 +74,4 @@ function mapDispatchToProps(dispatch) {
         orderBy: (typeOrder) => dispatch(handleOrderBy(typeOrder)),
     }
 }
-export default connect(null, mapDispatchToProps)(OrderByPost);
+export default connect(null, mapDispatchToProps)(PostsOrder);

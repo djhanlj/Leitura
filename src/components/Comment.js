@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Row, Col, Badge, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap'
 import { formatDate } from '../utils/helpers'
-import Vote from './Vote'
+import Votes from './Votes'
 import { handleRemoveComment, handleEditComment, handleComments } from '../actions/comment'
-import EditCommentForm from './EditCommentForm'
+import EditCommentForm from './forms/EditCommentForm'
 
 class Comment extends Component {
 
@@ -30,7 +30,6 @@ class Comment extends Component {
 
     /**
      * @description Desabilita form de edição de comentário
-     * 
      */
     doNotEdit = (e) => {
         e.preventDefault()
@@ -82,9 +81,8 @@ class Comment extends Component {
                                         <Col md={2}>
                                             <p className="post-meta">Votos <Badge>{comment.voteScore}</Badge></p>
                                         </Col>
-                                        <Vote objeto={comment} typeObject={'comment'} />
+                                        <Votes objeto={comment} typeObject={'comment'} />
                                     </Row>
-
                                 </div>
                             </div>
                             <hr />

@@ -3,9 +3,6 @@ import { receiveCategories } from './category'
 import { receivePosts } from './post'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-/**
- * 
- */
 export function handleInitialData() {
   return (dispatch) => {
     dispatch(showLoading())

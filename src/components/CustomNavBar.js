@@ -22,7 +22,6 @@ class CustomNavBar extends Component {
               {toUpperCaseText(categoria.name)}
             </NavItem>
           ))}
-
         </Nav>
       </Navbar>
     )

@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { formatDate } from '../utils/helpers'
+import { handleRemovePost } from '../actions/post'
 import { Grid, Row, Col, Badge, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap'
 import Comment from './Comment'
-import Vote from './Vote'
-import CommentForm from './CommentForm'
-import { handleRemovePost } from '../actions/post'
+import Votes from './Votes'
+import CommentForm from './forms/CommentForm'
 import NotFoundPage from './NotFoundPage'
 
 class PostDetail extends Component {
@@ -16,8 +16,7 @@ class PostDetail extends Component {
         const { removePost } = this.props
         removePost(id)
         this.props.history.push(`/`)
-    }
-
+    };
 
     render() {
         const { post, post_id } = this.props
@@ -68,14 +67,14 @@ class PostDetail extends Component {
                                 <Col md={2}>
                                     <p className="post-meta">Votos <Badge>{post.voteScore}</Badge></p>
                                 </Col>
-                                <Vote objeto={post} typeObject={'post'} />
+                                <Votes objeto={post} typeObject={'post'} />
                             </Row>
                             <hr />
                             <CommentForm post_id={post.id} />
                             <hr />
                             <Comment post_id={post_id} />
                         </Col>
-                        : <NotFoundPage/>}
+                        : <NotFoundPage />}
                 </Row>
             </Grid>
         )

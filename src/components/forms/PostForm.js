@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Grid, Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap'
-import { handleAddPost, handleEditPost } from '../actions/post'
+import { handleAddPost, handleEditPost } from '../../actions/post'
 import MensagemAlert from './MensagemAlert'
 import FieldGroup from './FieldGroup'
 
 class PostForm extends Component {
+
     state = {
         title: '',
         body: '',
@@ -16,7 +17,7 @@ class PostForm extends Component {
         showAlert: false,
     }
 
-    updateAndSave = post => {
+    updateState = post => {
         this.setState({
             title: post.title,
             body: post.body,
@@ -24,25 +25,28 @@ class PostForm extends Component {
             category: post.category,
             desabilitado: true,
         });
-    }
+    };
 
     componentDidMount() {
         const { post } = this.props
         if (post)
-            this.updateAndSave(post)
+            this.updateState(post)
     }
 
     componentDidUpdate(prevProps) {
         const { post, posts, post_id } = this.props
         if (post_id && posts.length > prevProps.posts.length)
-            this.updateAndSave(post)
+            this.updateState(post)
 
     }
 
     handleChangeFor = (propertyName) => (event) => {
         this.setState({ [propertyName]: event.target.value });
-    }
+    };
 
+    /**
+     * @description Método utilizado para add ou edit um post
+     */
     handleSubmit = (e) => {
         e.preventDefault()
         const { category, author, body, title } = this.state
@@ -61,9 +65,8 @@ class PostForm extends Component {
             this.props.history.push(`/post/${post_id}`)
         }
 
-
         this.setState({ showAlert: false });
-    }
+    };
 
     render() {
         const { category, author, body, title, desabilitado, showAlert } = this.state
