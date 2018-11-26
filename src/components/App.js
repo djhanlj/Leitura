@@ -5,6 +5,7 @@ import { handleInitialData } from '../actions'
 import Home from './Home'
 import Navbar from './CustomNavBar'
 import PostDetail from './PostDetail'
+import CategoryForm from './forms/CategoryForm'
 import PostForm from './forms/PostForm'
 import NotFoundPage from './NotFoundPage'
 import LoadingBar from 'react-redux-loading'
@@ -26,6 +27,7 @@ class App extends Component {
           <Navbar categories={categories} />
           <Switch>
             <Route exact path="/:category?" component={Home} />
+            <Route path={`/category/create`} component={CategoryForm} />
             <Route path={`/post/create`} component={PostForm} />
             <Route path={`/post/edit/:post_id`} component={PostForm} />
             <Route path={`/:category/:post_id`} component={PostDetail} />

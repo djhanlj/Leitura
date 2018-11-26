@@ -1,4 +1,7 @@
+
+import * as API from '../utils/LeituraAPI'
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES"
+export const ADD_CATEGORY = "ADD_CATEGORY"
 
 /**
  * 
@@ -11,3 +14,22 @@ export function receiveCategories(categories) {
     }
 }
 
+/**
+ * 
+ * @param {*} [category] 
+ */
+export function addCategory(category) {
+    return {
+        type: ADD_CATEGORY,
+        category,
+    }
+}
+
+export function handleAddCategory(name) {
+    return (dispatch) => {
+        return API.saveCategory({name})
+        .then((category) => {
+            dispatch(addCategory(category))
+        })
+    }
+}

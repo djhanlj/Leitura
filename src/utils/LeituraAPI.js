@@ -167,3 +167,13 @@ export function handleToggleVotingComment({ id, voto }) {
     .then(data => data)
 }
 
+
+export function saveCategory(category) {
+  return fetch(`${api}/categories`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(category)
+  }).then(res => res.json())
+    .then(data => data)
+}
+

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Row, Col, Button, Panel, FormControl, Glyphicon } from 'react-bootstrap'
+import { Grid, Row, Col, Panel, FormControl, Glyphicon, Label } from 'react-bootstrap'
 import Posts from './Posts'
 import { Link } from 'react-router-dom'
 import { toUpperCaseText } from '../utils/helpers'
@@ -49,13 +49,19 @@ class Home extends Component {
                 </Row>
                 <br />
                 <Row>
-                  <Link to={`/post/create`} >
-                    <div className='botao'>
-                      <Button bsStyle="primary" block>
-                        Novo Post
-                       </Button>
-                    </div>
-                  </Link>
+                  <Col md={12}>
+                    <h5>Opções:</h5>
+                    <Link to={`/category/create`} >
+                      <div className='botao'>
+                        <Label bsStyle="default">Nova Categoria</Label>
+                      </div>
+                    </Link>
+                    <Link to={`/post/create`} >
+                      <div className='botao'>
+                        <Label bsStyle="default">Novo Post</Label>
+                      </div>
+                    </Link>
+                  </Col>
                 </Row>
               </Panel.Body>
             </Panel>
