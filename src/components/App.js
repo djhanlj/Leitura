@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <LoadingBar />
+          <LoadingBar  style={{zIndex: 99999}} showFastActions/>
           <Navbar categories={categories} />
           <Switch>
             <Route exact path="/:category?" component={Home} />

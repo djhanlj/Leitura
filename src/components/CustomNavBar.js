@@ -7,7 +7,7 @@ class CustomNavBar extends Component {
   render() {
     const { categories } = this.props
     return (
-      <Navbar inverse collapseOnSelect>
+      <Navbar collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             Leitura
