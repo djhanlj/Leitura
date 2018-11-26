@@ -25,7 +25,7 @@ Frontend
 * NPM
 
 ### Running the App Back-End
-* Clone ou faça download do repositório do servidor Back-End
+* Clone ou faça download do repositório do servidor Back-End do endereço: https://github.com/djhanlj/leitura-server
 * Execute dentro do projeto `npm install` no terminal
 * Execute dentro do projeto `npm start`
 * Navegação `http://localhost:3001`
