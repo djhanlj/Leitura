@@ -7,12 +7,14 @@ class CustomNavBar extends Component {
   render() {
     const { categories } = this.props
     return (
-      <Navbar fixedTop>
+      <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             Leitura
           </Navbar.Brand>
+          <Navbar.Toggle />
         </Navbar.Header>
+        <Navbar.Collapse>
         <Nav>
           <NavItem eventKey={1} componentClass={Link} href="/" to="/">
             Home
@@ -23,6 +25,7 @@ class CustomNavBar extends Component {
             </NavItem>
           ))}
         </Nav>
+        </Navbar.Collapse>
       </Navbar>
     )
   }
