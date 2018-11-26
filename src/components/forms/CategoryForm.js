@@ -31,6 +31,8 @@ class CategoryForm extends Component {
             name: '',
             showAlert: false,
         }))
+
+        this.props.history.push(`/`)
     };
 
     render() {
@@ -40,7 +42,7 @@ class CategoryForm extends Component {
             <Grid className="body">
                 <MensagemAlert
                     showAlert={showAlert}
-                    textMensagem="Todos os campos do formulário de comentários devem ser preenchidos!"
+                    textMensagem="Todos os campos do formulário da categoria devem ser preenchidos!"
                     typeAlert='danger' />
 
                 <Row className="show-grid">

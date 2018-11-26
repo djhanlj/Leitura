@@ -14,7 +14,6 @@ export default function comments(state = [], action) {
             return state.concat(action.comments)
 
         case EDIT_COMMENT:
-            console.log(action.comment.id)
             return state.map(comment => comment.id === action.comment.id
                 ? { ...comment, body: action.comment.body }
                 : comment)
