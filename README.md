@@ -38,3 +38,6 @@ Frontend
 * Execute dentro do projeto `npm start`
 * Navegação `http://localhost:3000/`
 
+### Heroku Application
+* https://dj-leitura.herokuapp.com
+
